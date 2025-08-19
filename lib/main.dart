@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project_movies/ui/auth/login/login_screen.dart';
 import 'package:graduation_project_movies/ui/onboarding/intro_screen.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -17,8 +18,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.introScreenRouteName,
+      initialRoute: AppRoutes.loginScreenRouteName,
       routes: {
+        AppRoutes.loginScreenRouteName: (context) => LoginScreen(),
         AppRoutes.introScreenRouteName:(context)=>IntroScreen()
       },
       localizationsDelegates: AppLocalizations.localizationsDelegates,
