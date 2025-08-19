@@ -8,13 +8,19 @@ import '../../../utils/app_styles.dart';
 import '../../widgets/custom_Elevated_button.dart';
 import '../../widgets/custom_text_form_field.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool isHidden = true;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
     var formKey = GlobalKey<FormState>();
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
@@ -61,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: screenSize.height * 0.02),
                       CustomTextField(
                         labelStyle: AppStyles.regular16WhiteRoboto,
-                        obscureText: true,
+                        obscureText: isHidden,
                         validator: (text) {
                           if (text == null || text.isEmpty) {
                             return 'please Enter Password';
@@ -79,11 +85,21 @@ class LoginScreen extends StatelessWidget {
                           color: AppColors.whiteColor,
                         ),
                         hintText: AppLocalizations.of(context)!.password,
-                        suffixIcon: Image.asset(
-                          //TODO: onClick hide and Show
-                          AppAssets.eyeOffIcon,
-                          color: AppColors.whiteColor,
-                        ),
+                        suffixIcon: InkWell(
+                            onTap: () {
+                              isHidden = !isHidden;
+                              setState(() {});
+                            },
+                            child: isHidden
+                                ? Image.asset(
+                                    //TODO: onClick hide and Show
+                                    AppAssets.eyeOffIcon,
+                                    color: AppColors.whiteColor,
+                                  )
+                                : Icon(
+                                    Icons.remove_red_eye,
+                                    color: AppColors.whiteColor,
+                                  )),
                         keyboardType: TextInputType.number,
                       ),
                       SizedBox(height: screenSize.height * 0.01),
@@ -203,6 +219,7 @@ class LoginScreen extends StatelessWidget {
                         [AppColors.primaryColor],
                       ],
                       onToggle: (index) {
+                        //todo: change language
                         // if (index == 0) {
                         //   languageProvider.changeLanguage('en');
                         // } else {
