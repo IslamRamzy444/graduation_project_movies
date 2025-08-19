@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../utils/app_assets.dart';
@@ -19,7 +20,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenSize.width * 0.03),
+          padding: EdgeInsets.symmetric(horizontal: screenSize.width * 0.04),
           child: SingleChildScrollView(
             child: Column(
               //crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,9 +56,11 @@ class LoginScreen extends StatelessWidget {
                         ),
                         hintText: AppLocalizations.of(context)!.email,
                         keyboardType: TextInputType.emailAddress,
+                        labelStyle: AppStyles.regular16WhiteRoboto,
                       ),
                       SizedBox(height: screenSize.height * 0.02),
                       CustomTextField(
+                        labelStyle: AppStyles.regular16WhiteRoboto,
                         obscureText: true,
                         validator: (text) {
                           if (text == null || text.isEmpty) {
@@ -73,7 +76,7 @@ class LoginScreen extends StatelessWidget {
                         hintStyle: AppStyles.regular15WhiteRoboto,
                         prefixIcon: Image.asset(
                           AppAssets.passwordIcon,
-                          color: Theme.of(context).cardColor,
+                          color: AppColors.whiteColor,
                         ),
                         hintText: AppLocalizations.of(context)!.password,
                         suffixIcon: Image.asset(
@@ -88,7 +91,7 @@ class LoginScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
-                            style: ButtonStyle(),
+                            // style: ButtonStyle(),
                             onPressed: () {
                               //TODO: Navigate to forget password screen
                             },
@@ -114,7 +117,7 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           Text(
                             AppLocalizations.of(context)!.do_not_have_account,
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: AppStyles.regular14WhiteRoboto,
                           ),
                           SizedBox(width: screenSize.width * 0.015),
                           TextButton(
@@ -174,44 +177,41 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: screenSize.height * 0.02),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     ToggleSwitch(
-                //       changeOnTap: true,
-                //       customWidgets: [
-                //         Image.asset(AppAssets.enIcon),
-                //         Image.asset(AppAssets.egIcon),
-                //       ],
-                //       radiusStyle: true,
-                //       curve: Curves.fastLinearToSlowEaseIn,
-                //       animate: true,
-                //       minWidth: screenSize.width * 0.2,
-                //       minHeight: screenSize.width * 0.1,
-                //       initialLabelIndex: languageProvider.appLanguage == 'en'
-                //           ? 0
-                //           : 1,
-                //       cornerRadius: screenSize.width * 0.5,
-                //       activeFgColor: Colors.white,
-                //       inactiveBgColor: Colors.transparent,
-                //       inactiveFgColor: Colors.white,
-                //       totalSwitches: 2,
-                //       borderColor: [AppColors.primaryLight],
-                //       dividerColor: Colors.transparent,
-                //       activeBgColors: [
-                //         [Colors.blue, Colors.lightBlueAccent],
-                //         [Colors.red, Colors.black],
-                //       ],
-                //       onToggle: (index) {
-                //         if (index == 0) {
-                //           languageProvider.changeLanguage('en');
-                //         } else if (index == 1) {
-                //           languageProvider.changeLanguage('ar');
-                //         }
-                //       },
-                //     ),
-                //   ],
-                // ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ToggleSwitch(
+                      changeOnTap: true,
+                      customWidgets: [
+                        Image.asset(AppAssets.usaFlagIcon,
+                            width: 24, height: 24),
+                        Image.asset(AppAssets.egFlagIcon,
+                            width: 24, height: 24),
+                      ],
+                      minWidth: 60,
+                      minHeight: 30,
+                      initialLabelIndex: 1,
+                      cornerRadius: 30.0,
+                      radiusStyle: true,
+                      borderWidth: 2.0,
+                      borderColor: [AppColors.primaryColor],
+                      dividerColor: Colors.transparent,
+                      activeFgColor: Colors.white,
+                      inactiveBgColor: Colors.transparent,
+                      activeBgColors: [
+                        [AppColors.primaryColor],
+                        [AppColors.primaryColor],
+                      ],
+                      onToggle: (index) {
+                        // if (index == 0) {
+                        //   languageProvider.changeLanguage('en');
+                        // } else {
+                        //   languageProvider.changeLanguage('ar');
+                        // }
+                      },
+                    ),
+                  ],
+                )
               ],
             ),
           ),

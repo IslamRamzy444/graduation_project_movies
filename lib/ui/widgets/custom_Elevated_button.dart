@@ -11,10 +11,8 @@ class CustomElevatedButton extends StatelessWidget {
   VoidCallback onPressed;
   Widget? leadingIcon;
   MainAxisAlignment rowMainAxesAlignment;
-  bool isDateAndTime;
 
   CustomElevatedButton({
-    this.isDateAndTime = false,
     this.rowMainAxesAlignment = MainAxisAlignment.center,
     super.key,
     this.leadingIcon,
@@ -49,7 +47,8 @@ class CustomElevatedButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: rowMainAxesAlignment,
           children: [
-            if (leadingIcon != null) SizedBox(width: screenSize.width * 0.01),
+            (leadingIcon != null) ? leadingIcon! : SizedBox(),
+            if (leadingIcon != null) SizedBox(width: screenSize.width * 0.02),
             Text(
               buttonText,
               style: buttonTextStyle ?? AppStyles.regular20BlackRoboto,

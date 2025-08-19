@@ -19,7 +19,7 @@ class CustomTextField extends StatelessWidget {
   bool obscureText;
   String? obscuringCharacter;
   int? maxLines;
-
+  Color? filledColor;
   CustomTextField({
     this.maxLines,
     this.obscuringCharacter,
@@ -35,6 +35,7 @@ class CustomTextField extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.validator,
+    this.filledColor,
   });
 
   @override
@@ -42,6 +43,8 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       maxLines: maxLines ?? 1,
       decoration: InputDecoration(
+        filled: true,
+        fillColor: filledColor ?? AppColors.darkGreyColor,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         hintStyle: hintStyle ?? AppStyles.regular16WhiteRoboto,
@@ -63,7 +66,7 @@ class CustomTextField extends StatelessWidget {
       keyboardType: keyboardType,
       obscureText: obscureText,
       obscuringCharacter: obscuringCharacter ?? '.',
-      style: Theme.of(context).textTheme.bodySmall,
+      style: AppStyles.regular16WhiteRoboto,
     );
   }
 
