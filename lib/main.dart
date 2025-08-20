@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_movies/language_cubit/language_cubit.dart';
+import 'package:graduation_project_movies/ui/auth/login/login_screen.dart';
 import 'package:graduation_project_movies/ui/onboarding/intro_screen.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -7,7 +10,8 @@ import 'package:graduation_project_movies/utils/app_theme.dart';
 import 'l10n/app_localizations.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      BlocProvider(create: (context) => LanguageCubit(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -15,17 +19,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.introScreenRouteName,
-      routes: {
-        AppRoutes.introScreenRouteName:(context)=>IntroScreen()
-      },
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      locale: Locale("en"),
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.dark,
-    );
+    return BlocBuilder<LanguageCubit, Locale>(builder: (context, locale) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: AppRoutes.loginScreenRouteName,
+        routes: {
+          AppRoutes.loginScreenRouteName: (context) => LoginScreen(),
+          AppRoutes.introScreenRouteName: (context) => IntroScreen()
+        },
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: locale,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.dark,
+      );
+    });
   }
 }
