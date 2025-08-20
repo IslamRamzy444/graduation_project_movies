@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../language_cubit/language_cubit.dart';
 import '../../../utils/app_assets.dart';
 import '../../../utils/app_styles.dart';
 import '../../widgets/custom_Elevated_button.dart';
@@ -21,6 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    var languageCubit = context.read<LanguageCubit>();
+    final locale = context.watch<LanguageCubit>().state;
     var formKey = GlobalKey<FormState>();
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
@@ -206,7 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                       minWidth: 60,
                       minHeight: 30,
-                      initialLabelIndex: 1,
+                      initialLabelIndex: locale.languageCode == 'en' ? 0 : 1,
                       cornerRadius: 30.0,
                       radiusStyle: true,
                       borderWidth: 2.0,
@@ -219,12 +223,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         [AppColors.primaryColor],
                       ],
                       onToggle: (index) {
-                        //todo: change language
-                        // if (index == 0) {
-                        //   languageProvider.changeLanguage('en');
-                        // } else {
-                        //   languageProvider.changeLanguage('ar');
-                        // }
+                        if (index == 0) {
+                          languageCubit.changeLanguage(Locale('en'));
+                        } else {
+                          languageCubit.changeLanguage(Locale('ar'));
+                        }
                       },
                     ),
                   ],
