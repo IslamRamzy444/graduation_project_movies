@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_movies/ui/auth/login/forget_password.dart';
 import 'package:graduation_project_movies/ui/auth/login/login_screen.dart';
 import 'package:graduation_project_movies/ui/onboarding/intro_screen.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
@@ -22,10 +23,12 @@ class MyApp extends StatelessWidget {
     return BlocBuilder<LanguageCubit, Locale>(builder: (context, locale) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.loginScreenRouteName,
+        initialRoute: AppRoutes.forgetPasswordScreenRouteName,
         routes: {
           AppRoutes.loginScreenRouteName: (context) => LoginScreen(),
-          AppRoutes.introScreenRouteName: (context) => IntroScreen()
+          AppRoutes.introScreenRouteName: (context) => IntroScreen(),
+          AppRoutes.forgetPasswordScreenRouteName: (context) =>
+              ForgetPassword(),
         },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,

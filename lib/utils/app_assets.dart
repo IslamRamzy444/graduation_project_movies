@@ -6,4 +6,5 @@ class AppAssets {
   static const usaFlagIcon = 'assets/images/usa_flag_icon.png';
   static const egFlagIcon = 'assets/images/eg_flag_icon.png';
   static const eyeOffIcon = 'assets/images/eye_off_icon.png';
+  static const forgetPassword = 'assets/images/Forgot password-bro 1.png';
 }
