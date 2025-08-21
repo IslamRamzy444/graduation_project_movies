@@ -34,5 +34,13 @@
   "reset_password": "إعادة تعيين كلمة المرور",
   "delete_account": "حذف الحساب",
   "update_data": "تحديث البيانات",
-  "pick_avatar": "اختر صورة رمزية"
+  "pick_avatar": "اختر صورة رمزية",
+  "empty_name_error": "يرجى إدخال اسم المستخدم",
+  "empty_email_error": "يرجى إدخال عنوان البريد الإلكتروني",
+  "invalid_email_error": "يرجى إدخال عنوان بريد إلكتروني صالح",
+  "empty_password_error": "يرجى إدخال كلمة المرور",
+  "empty_re_password_error": "يرجى إدخال تأكيد كلمة المرور",
+  "short_password_error": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل",
+  "mis_match_re_password": "كلمة المرور المعاد إدخالها لا تطابق كلمة المرور",
+  "empty_phone_error": "يرجى إدخال رقم الهاتف"
 }

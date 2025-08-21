@@ -20,4 +20,5 @@ class AppAssets {
   static const avatar7 = 'assets/images/avatar_7.png';
   static const avatar8 = 'assets/images/avatar_8.png';
   static const avatar9 = 'assets/images/avatar_9.png';
+  static const userNameIcon="assets/images/user-name-icon.png";
 }
