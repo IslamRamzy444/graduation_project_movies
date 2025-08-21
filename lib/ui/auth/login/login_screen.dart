@@ -3,7 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
+
 import '../../../cubits/language_cubit.dart';
+
+
 import '../../../l10n/app_localizations.dart';
 import '../../../utils/app_assets.dart';
 import '../../../utils/app_styles.dart';
