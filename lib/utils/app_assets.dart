@@ -6,4 +6,10 @@ class AppAssets {
   static const usaFlagIcon = 'assets/images/usa_flag_icon.png';
   static const egFlagIcon = 'assets/images/eg_flag_icon.png';
   static const eyeOffIcon = 'assets/images/eye_off_icon.png';
+  static const allMoviesImage = 'assets/images/allMoviesImg.png';
+  static const avengersImage = 'assets/images/avengersImg.png';
+  static const openheimerImage = 'assets/images/oppenheimer.png';
+  static const badBoysImage = 'assets/images/badboysImg.png';
+  static const drStrangeImage = 'assets/images/drStrangeImg.png';
+  static const nineteen17Image = 'assets/images/1917Img.png';
 }

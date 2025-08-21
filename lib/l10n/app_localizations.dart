@@ -101,7 +101,7 @@ abstract class AppLocalizations {
   /// No description provided for @boarding_title_one.
   ///
   /// In en, this message translates to:
-  /// **'Find Your Next Favorite Movie Here'**
+  /// **'Find Your Next\nFavorite Movie Here'**
   String get boarding_title_one;
 
   /// No description provided for @boarding_content_one.
