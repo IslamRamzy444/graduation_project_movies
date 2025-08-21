@@ -7,6 +7,14 @@ class AppAssets {
   static const egFlagIcon = 'assets/images/eg_flag_icon.png';
   static const eyeOffIcon = 'assets/images/eye_off_icon.png';
 
+  static const allMoviesImage = 'assets/images/allMoviesImg.png';
+  static const avengersImage = 'assets/images/avengersImg.png';
+  static const openheimerImage = 'assets/images/oppenheimer.png';
+  static const badBoysImage = 'assets/images/badboysImg.png';
+  static const drStrangeImage = 'assets/images/drStrangeImg.png';
+  static const nineteen17Image = 'assets/images/1917Img.png';
+
+
   static const forgetPassword = 'assets/images/Forgot password-bro 1.png';
 
   static const personIcon = "assets/images/person_icon.png";
@@ -21,4 +29,5 @@ class AppAssets {
   static const avatar8 = 'assets/images/avatar_8.png';
   static const avatar9 = 'assets/images/avatar_9.png';
   static const userNameIcon="assets/images/user-name-icon.png";
+
 }

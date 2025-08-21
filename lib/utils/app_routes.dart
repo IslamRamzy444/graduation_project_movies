@@ -1,7 +1,12 @@
 class AppRoutes {
   static const String introScreenRouteName = "intro-screen";
   static const String loginScreenRouteName = "login_screen";
-  static const String onBoardingScreenRouteName = "onboarding_screen";
+
+  static const String onBoardingScreen1RouteName = "onboarding_screen1";
+  static const String onBoardingScreen2RouteName = "onboarding_screen2";
+
+
+  
 
   static const String forgetPasswordScreenRouteName = "forget_password_screen";
 
@@ -9,4 +14,5 @@ class AppRoutes {
 
   static const String registerScreenRouteName="register-screen";
 }
+
 
