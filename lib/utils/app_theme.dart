@@ -6,7 +6,7 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.blackColor,
     appBarTheme: AppBarTheme(
       centerTitle: true,
-      color: AppColors.primaryColor,
+      color: AppColors.blackColor,
       iconTheme: IconThemeData(color: AppColors.primaryColor)
     )
   );

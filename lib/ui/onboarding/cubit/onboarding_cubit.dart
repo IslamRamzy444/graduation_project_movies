@@ -22,6 +22,18 @@ class OnBoardingViewModel extends Cubit<OnboardingState> {
       emit(OnboardingFirstPage(currentPage: currentPage));
     }
   }
+
+  void goToPage(int page) {
+    if (page >= 0 && page <= 4) {
+      if (page == 0) {
+        emit(OnboardingFirstPage(currentPage: page));
+      } else if (page == 4) {
+        emit(OnboardingLastPage(currentPage: page));
+      } else {
+        emit(OnboardingNormalPage(currentPage: page));
+      }
+    }
+  }
   
   void finishOnBoarding(BuildContext context) {
     Navigator.pushReplacementNamed(context, AppRoutes.loginScreenRouteName);
