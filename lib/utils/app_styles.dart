@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
 
 class AppStyles {
+
   static TextStyle medium36White=GoogleFonts.inter(fontWeight: FontWeight.w500,fontSize: 36,color: AppColors.whiteColor);
   static TextStyle regular20GreyWhite=GoogleFonts.inter(fontWeight: FontWeight.w400,fontSize: 20,color: AppColors.whiteColor60Per);
   static TextStyle regular20White=GoogleFonts.inter(fontWeight: FontWeight.w400,fontSize: 20,color: AppColors.whiteColor,decoration: TextDecoration.none);
