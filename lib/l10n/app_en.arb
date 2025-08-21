@@ -34,5 +34,13 @@
     "reset_password":"Reset Password",
     "delete_account":"Delete Account",
     "update_data":"Update Data",
-    "pick_avatar":"Pick Avatar"
+    "pick_avatar":"Pick Avatar",
+    "empty_name_error":"Please enter a user name",
+    "empty_email_error":"Please enter an email address",
+    "invalid_email_error":"Please enter a valid email address",
+    "empty_password_error":"Please enter a password",
+    "empty_re_password_error":"Please enter a re password",
+    "short_password_error":"Your password must have at least 8 chars",
+    "mis_match_re_password":"Your re password doesn't match with your password",
+    "empty_phone_error":"Please enter a phone number"
 }
