@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
+import 'package:graduation_project_movies/utils/app_routes.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-
 import '../../../cubits/language_cubit/language_cubit.dart';
-
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-// import '../../../l10n/app_localizations.dart';
+//import '../../../l10n/app_localizations.dart';
 import '../../../utils/app_assets.dart';
 import '../../../utils/app_styles.dart';
 import '../../widgets/custom_Elevated_button.dart';
@@ -22,13 +21,15 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isHidden = true;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController =
+      TextEditingController(text: 'farouk@gmail.com');
+  TextEditingController passwordController =
+      TextEditingController(text: '12345678945');
+  var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var languageCubit = context.read<LanguageCubit>();
     final locale = context.watch<LanguageCubit>().state;
-    var formKey = GlobalKey<FormState>();
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
@@ -51,13 +52,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomTextField(
                         validator: (text) {
                           if (text == null || text.isEmpty) {
-                            return 'please Enter Email';
+                            return AppLocalizations.of(context)!
+                                .empty_email_error;
                           }
                           final bool emailValid = RegExp(
                             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
                           ).hasMatch(text);
                           if (!emailValid) {
-                            return 'please Enter Valid Email';
+                            return AppLocalizations.of(context)!
+                                .invalid_email_error;
                           }
                           return null;
                         },
@@ -77,10 +80,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         obscureText: isHidden,
                         validator: (text) {
                           if (text == null || text.isEmpty) {
-                            return 'please Enter Password';
+                            return AppLocalizations.of(context)!
+                                .empty_password_error;
                           }
                           if (text.length < 8) {
-                            return 'Password should be at least 8 characters';
+                            return AppLocalizations.of(context)!
+                                .short_password_error;
                           }
 
                           return null;
@@ -117,6 +122,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             // style: ButtonStyle(),
                             onPressed: () {
                               //TODO: Navigate to forget password screen
+                              Navigator.of(context).pushNamed(
+                                  AppRoutes.forgetPasswordScreenRouteName);
                             },
                             child: Text(
                               AppLocalizations.of(
@@ -132,6 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         buttonText: AppLocalizations.of(context)!.login,
                         onPressed: () {
                           //TODO: Login logic;
+                          login();
                         },
                       ),
                       SizedBox(height: screenSize.height * 0.02),
@@ -149,6 +157,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             onPressed: () {
                               //TODO: Navigate to register
+                              Navigator.of(context)
+                                  .pushNamed(AppRoutes.registerScreenRouteName);
                             },
                             child: Text(
                                 AppLocalizations.of(context)!.create_account,
@@ -241,5 +251,9 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void login() {
+    if (formKey.currentState?.validate() == true) {}
   }
 }
