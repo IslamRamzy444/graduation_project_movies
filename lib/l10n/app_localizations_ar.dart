@@ -12,8 +12,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get boarding_title_one => 'ابحث عن فيلمك المفضل القادم هنا';
 
   @override
-  String get boarding_content_one =>
-      'احصل على وصول إلى مكتبة ضخمة من الأفلام التي تناسب جميع الأذواق. ستعجبك بالتأكيد.';
+  String get boarding_content_one => 'احصل على وصول إلى مكتبة ضخمة من الأفلام التي تناسب جميع الأذواق. ستعجبك بالتأكيد.';
 
   @override
   String get explore_now => 'استكشف الآن';
@@ -28,29 +27,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get discover_movies => 'اكتشف الأفلام';
 
   @override
-  String get boarding_content_two =>
-      'استكشف مجموعة واسعة من الأفلام بجميع الجودات والأنواع. اعثر بسهولة على فيلمك المفضل القادم.';
+  String get boarding_content_two => 'استكشف مجموعة واسعة من الأفلام بجميع الجودات والأنواع. اعثر بسهولة على فيلمك المفضل القادم.';
 
   @override
   String get explore_all_genres => 'استكشف جميع الأنواع';
 
   @override
-  String get boarding_content_three =>
-      'اكتشف أفلامًا من كل الأنواع وبجميع الجودات المتاحة. اعثر على شيء جديد ومثير لمشاهدته كل يوم.';
+  String get boarding_content_three => 'اكتشف أفلامًا من كل الأنواع وبجميع الجودات المتاحة. اعثر على شيء جديد ومثير لمشاهدته كل يوم.';
 
   @override
   String get create_watchlists => 'أنشئ قوائم مشاهدة';
 
   @override
-  String get boarding_content_four =>
-      'احفظ الأفلام في قائمة المشاهدة الخاصة بك لتتابع ما تريد مشاهدته لاحقًا. استمتع بأفلام متنوعة بجميع الجودات والأنواع.';
+  String get boarding_content_four => 'احفظ الأفلام في قائمة المشاهدة الخاصة بك لتتابع ما تريد مشاهدته لاحقًا. استمتع بأفلام متنوعة بجميع الجودات والأنواع.';
 
   @override
   String get rate_review_learn => 'قيّم، راجع، وتعلّم';
 
   @override
-  String get boarding_content_five =>
-      'شارك أفكارك حول الأفلام التي شاهدتها. اغص في تفاصيل الأفلام وساعد الآخرين على اكتشاف أفلام رائعة من خلال مراجعاتك.';
+  String get boarding_content_five => 'شارك أفكارك حول الأفلام التي شاهدتها. اغص في تفاصيل الأفلام وساعد الآخرين على اكتشاف أفلام رائعة من خلال مراجعاتك.';
 
   @override
   String get start_watching => 'ابدأ المشاهدة الآن';
@@ -120,4 +115,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pick_avatar => 'اختر صورة رمزية';
+
+  @override
+  String get empty_name_error => 'يرجى إدخال اسم المستخدم';
+
+  @override
+  String get empty_email_error => 'يرجى إدخال عنوان البريد الإلكتروني';
+
+  @override
+  String get invalid_email_error => 'يرجى إدخال عنوان بريد إلكتروني صالح';
+
+  @override
+  String get empty_password_error => 'يرجى إدخال كلمة المرور';
+
+  @override
+  String get empty_re_password_error => 'يرجى إدخال تأكيد كلمة المرور';
+
+  @override
+  String get short_password_error => 'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل';
+
+  @override
+  String get mis_match_re_password => 'كلمة المرور المعاد إدخالها لا تطابق كلمة المرور';
+
+  @override
+  String get empty_phone_error => 'يرجى إدخال رقم الهاتف';
 }
