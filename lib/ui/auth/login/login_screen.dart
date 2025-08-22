@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../cubits/language_cubit/language_cubit.dart';
-//import '../../../l10n/app_localizations.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../utils/app_assets.dart';
 import '../../../utils/app_styles.dart';
 import '../../widgets/custom_Elevated_button.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:graduation_project_movies/ui/auth/login/forget_password.dart';
 import 'package:graduation_project_movies/ui/auth/login/login_screen.dart';
 import 'package:graduation_project_movies/ui/auth/register/register_screen.dart';
@@ -12,8 +12,7 @@ import 'package:graduation_project_movies/utils/app_routes.dart';
 import 'package:graduation_project_movies/utils/app_theme.dart';
 
 import 'cubits/language_cubit/language_cubit.dart';
-
-//import 'l10n/app_localizations.dart';
+import 'l10n/app_localizations.dart';
 
 void main() {
   runApp(
