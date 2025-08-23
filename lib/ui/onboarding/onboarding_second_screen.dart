@@ -3,13 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_movies/ui/onboarding/cubit/onboarding_cubit.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_onboarding_item.dart';
-import 'package:graduation_project_movies/utils/app_colors.dart';
-
-import '../../l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+//import '../../l10n/app_localizations.dart';
 import '../../utils/app_assets.dart';
-import '../../utils/app_routes.dart';
-import '../../utils/app_styles.dart';
-import '../widgets/custom_Elevated_button.dart';
 
 class OnboardingSecondScreen extends StatelessWidget {
   const OnboardingSecondScreen({super.key});
