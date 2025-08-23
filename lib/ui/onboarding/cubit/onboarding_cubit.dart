@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:graduation_project_movies/ui/onboarding/cubit/onboarding_states.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
 
