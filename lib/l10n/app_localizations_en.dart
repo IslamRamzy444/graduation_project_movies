@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -12,7 +13,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get boarding_title_one => 'Find Your Next\nFavorite Movie Here';
 
   @override
-  String get boarding_content_one => 'Get access to a huge library of movies to suit all tastes. You will surely like it.';
+  String get boarding_content_one =>
+      'Get access to a huge library of movies to suit all tastes. You will surely like it.';
 
   @override
   String get explore_now => 'Explore Now';
@@ -27,25 +29,29 @@ class AppLocalizationsEn extends AppLocalizations {
   String get discover_movies => 'Discover Movies';
 
   @override
-  String get boarding_content_two => 'Explore a vast collection of movies in all qualities and genres. Find your next favorite film with ease.';
+  String get boarding_content_two =>
+      'Explore a vast collection of movies in all qualities and genres. Find your next favorite film with ease.';
 
   @override
   String get explore_all_genres => 'Explore All Genres';
 
   @override
-  String get boarding_content_three => 'Discover movies from every genre, in all available qualities. Find something new and exciting to watch every day.';
+  String get boarding_content_three =>
+      'Discover movies from every genre, in all available qualities. Find something new and exciting to watch every day.';
 
   @override
   String get create_watchlists => 'Create Watchlists';
 
   @override
-  String get boarding_content_four => 'Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.';
+  String get boarding_content_four =>
+      'Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.';
 
   @override
   String get rate_review_learn => 'Rate, Review, and Learn';
 
   @override
-  String get boarding_content_five => 'Share your thoughts on the movies you\'ve watched. Dive deep into film details and help others discover great movies with your reviews.';
+  String get boarding_content_five =>
+      'Share your thoughts on the movies you\'ve watched. Dive deep into film details and help others discover great movies with your reviews.';
 
   @override
   String get start_watching => 'Start Watching Now';
@@ -135,7 +141,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get short_password_error => 'Your password must have at least 8 chars';
 
   @override
-  String get mis_match_re_password => 'Your re password doesn\'t match with your password';
+  String get mis_match_re_password =>
+      'Your re password doesn\'t match with your password';
 
   @override
   String get empty_phone_error => 'Please enter a phone number';
