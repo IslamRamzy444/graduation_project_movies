@@ -146,4 +146,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get empty_phone_error => 'Please enter a phone number';
+
+  @override
+  String get login_loading => 'Login...';
+
+  @override
+  String get login_succeeded => 'Login Succeeded';
+
+  @override
+  String get login_with_google_loading => 'Login with Google...';
+
+  @override
+  String get ok => 'Ok';
 }

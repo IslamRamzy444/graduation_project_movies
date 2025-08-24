@@ -114,7 +114,6 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                               },
                               child: isHidden
                                   ? Image.asset(
-                                      //TODO: onClick hide and Show
                                       AppAssets.eyeOffIcon,
                                       color: AppColors.whiteColor,
                                     )
@@ -131,9 +130,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                             TextButton(
                               // style: ButtonStyle(),
                               onPressed: () {
-                                //TODO: Navigate to forget password screen
-                                Navigator.of(context).pushNamed(
-                                    AppRoutes.forgetPasswordScreenRouteName);
+                                navigateToForgetPasswordScreen();
                               },
                               child: Text(
                                 AppLocalizations.of(
@@ -148,11 +145,13 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                         BlocListener<LoginViewModel, LoginStates>(
                           listener: (context, state) {
                             if (state is LoginLoadingState) {
-                              showLoading('login...');
+                              showLoading(
+                                  AppLocalizations.of(context)!.login_loading);
                             } else if (state is LoginErrorState) {
                               showMessage(state.errorMessage);
                             } else {
-                              showSuccessDialog('Login succeeded',
+                              showSuccessDialog(
+                                  AppLocalizations.of(context)!.login_succeeded,
                                   () => navigateToHomeScreen());
                             }
                           },
@@ -178,9 +177,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                                     WidgetStatePropertyAll(EdgeInsets.zero),
                               ),
                               onPressed: () {
-                                //TODO: Navigate to register
-                                Navigator.of(context).pushNamed(
-                                    AppRoutes.registerScreenRouteName);
+                                navigateToRegisterScreen();
                               },
                               child: Text(
                                   AppLocalizations.of(context)!.create_account,
@@ -224,8 +221,15 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                             context,
                           )!
                               .login_with_google,
-                          onPressed: () {
-                            //TODO: google login logic
+                          onPressed: () async {
+                            showLoading(AppLocalizations.of(context)!
+                                .login_with_google_loading);
+                            await Future.delayed(const Duration(seconds: 2));
+                            hideLoading();
+                            showSuccessDialog(
+                              AppLocalizations.of(context)!.login_succeeded,
+                              () => navigateToHomeScreen(),
+                            );
                           },
                         ),
                       ],
@@ -294,7 +298,9 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
   @override
   void showMessage(String message) {
     DialogUtils.showMessage(
-        context: context, message: message, postActionName: 'Ok');
+        context: context,
+        message: message,
+        postActionName: AppLocalizations.of(context)!.ok);
   }
 
   @override
@@ -302,7 +308,17 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
     DialogUtils.showMessage(
         context: context,
         message: message,
-        postActionName: 'Ok',
+        postActionName: AppLocalizations.of(context)!.ok,
         posAction: onclick);
+  }
+
+  @override
+  void navigateToForgetPasswordScreen() {
+    Navigator.of(context).pushNamed(AppRoutes.forgetPasswordScreenRouteName);
+  }
+
+  @override
+  void navigateToRegisterScreen() {
+    Navigator.of(context).pushNamed(AppRoutes.registerScreenRouteName);
   }
 }

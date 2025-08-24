@@ -41,6 +41,10 @@
     "empty_password_error":"Please enter a password",
     "empty_re_password_error":"Please enter a re password", 
     "short_password_error":"Your password must have at least 8 chars", 
-    "mis_match_re_password":"Your re password doesn't match with your password", 
-    "empty_phone_error":"Please enter a phone number"
+    "mis_match_re_password":"Your re password doesn't match with your password",
+    "empty_phone_error": "Please enter a phone number",
+    "login_loading": "Login...",
+    "login_succeeded": "Login Succeeded",
+    "login_with_google_loading": "Login with Google...",
+    "ok": "Ok"
 }

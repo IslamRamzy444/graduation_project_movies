@@ -146,5 +146,17 @@ class AppLocalizationsAr extends AppLocalizations {
       'كلمة المرور المعاد إدخالها لا تطابق كلمة المرور';
 
   @override
-  String get empty_phone_error => 'يرجى إدخال رقم الهاتف';
+  String get empty_phone_error => 'Please enter a phone number';
+
+  @override
+  String get login_loading => 'جاري تسجيل الدخول...';
+
+  @override
+  String get login_succeeded => 'تم تسجيل الدخول بنجاح';
+
+  @override
+  String get login_with_google_loading => 'جاري التسجيل...';
+
+  @override
+  String get ok => 'تم';
 }

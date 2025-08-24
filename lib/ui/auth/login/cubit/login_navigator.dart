@@ -8,4 +8,8 @@ abstract class LoginNavigator {
   void showSuccessDialog(String message, Function onclick);
 
   void navigateToHomeScreen();
+
+  void navigateToRegisterScreen();
+
+  void navigateToForgetPasswordScreen();
 }
