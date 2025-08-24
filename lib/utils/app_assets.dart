@@ -34,5 +34,8 @@ class AppAssets {
   static const browseIcon = "assets/images/browseIcon.png";
   static const profileIcon = "assets/images/profileIcon.png";
   static const searchIcon = "assets/images/searchIcon.png";
+  static const availableNowImage = "assets/images/availableNowImage.png";
+  static const watchNowImage = "assets/images/watchNowImage.png";
+  static const movieImage = "assets/images/movieImage.png";
 
 }
