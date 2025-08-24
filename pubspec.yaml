@@ -44,6 +44,8 @@ dependencies:
   flutter_bloc: ^9.1.1
   flutter_native_splash: ^2.4.4
   carousel_slider: ^5.1.1
+  floating_bottom_navigation_bar: ^1.5.2
+  floating_navbar: ^3.0.0
 
 dev_dependencies:
   flutter_test:

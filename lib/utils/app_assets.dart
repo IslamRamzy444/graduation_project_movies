@@ -30,4 +30,9 @@ class AppAssets {
   static const avatar9 = 'assets/images/avatar_9.png';
   static const userNameIcon="assets/images/user-name-icon.png";
 
+  static const homeIcon = "assets/images/homeIcon.png";
+  static const browseIcon = "assets/images/browseIcon.png";
+  static const profileIcon = "assets/images/profileIcon.png";
+  static const searchIcon = "assets/images/searchIcon.png";
+
 }
