@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_movies/ui/auth/login/forget_password.dart';
 import 'package:graduation_project_movies/ui/auth/login/login_screen.dart';
 import 'package:graduation_project_movies/ui/auth/register/register_screen.dart';
+import 'package:graduation_project_movies/ui/home/home_screen.dart';
 import 'package:graduation_project_movies/ui/onboarding/intro_screen.dart';
 import 'package:graduation_project_movies/ui/onboarding/onboarding_first_screen.dart';
 import 'package:graduation_project_movies/ui/onboarding/onboarding_second_screen.dart';
@@ -27,10 +28,11 @@ class MyApp extends StatelessWidget {
     return BlocBuilder<LanguageCubit, Locale>(builder: (context, locale) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.onBoardingScreen1RouteName,
+        initialRoute: AppRoutes.loginScreenRouteName,
         routes: {
           AppRoutes.loginScreenRouteName: (context) => LoginScreen(),
           AppRoutes.introScreenRouteName: (context) => IntroScreen(),
+          AppRoutes.homeScreenRouteName: (context) => HomeScreen(),
           AppRoutes.onBoardingScreen1RouteName: (context) =>
               OnboardingFirstScreen(),
           AppRoutes.onBoardingScreen2RouteName: (context) =>
