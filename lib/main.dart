@@ -41,7 +41,8 @@ class MyApp extends StatelessWidget {
               ForgetPassword(),
           AppRoutes.updateProfileScreenRouteName: (context) =>
               UpdateProfileScreen(),
-          AppRoutes.registerScreenRouteName: (context) => RegisterScreen()
+          AppRoutes.registerScreenRouteName: (context) => RegisterScreen(),
+          AppRoutes.homeScreenRouteName:(context)=>HomeScreen()
         },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,

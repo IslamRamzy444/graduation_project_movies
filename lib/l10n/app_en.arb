@@ -46,5 +46,8 @@
     "login_loading": "Login...",
     "login_succeeded": "Login Succeeded",
     "login_with_google_loading": "Login with Google...",
-    "ok": "Ok"
+    "ok": "Ok",
+    "success":"Success",
+    "failure":"Failure",
+    "loading":"Loading..."
 }

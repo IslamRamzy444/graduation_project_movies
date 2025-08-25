@@ -45,5 +45,10 @@
   "login_loading": "جاري تسجيل الدخول...",
   "login_succeeded": "تم تسجيل الدخول بنجاح",
   "login_with_google_loading": "جاري التسجيل...",
-  "ok": "تم"
+  "empty_phone_error": "يرجى إدخال رقم الهاتف",
+  "success": "نجاح",
+  "failure": "فشل",
+  "ok": "حسنًا",
+  "loading": "جارٍ التحميل..."
+
 }

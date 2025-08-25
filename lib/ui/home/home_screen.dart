@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_movies/utils/app_colors.dart';
+
+import 'package:graduation_project_movies/utils/app_styles.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,18 +9,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(40),
-        child: Center(
-          child: Text(
-            'Consider it Home screen now :-)',
-            style: TextStyle(
-                color: AppColors.redColor,
-                fontSize: 80,
-                fontWeight: FontWeight.w700),
-          ),
-        ),
+      appBar: AppBar(
+        title: Text("Home",style: AppStyles.regular16PrimaryRoboto,),
       ),
     );
   }
 }
+
