@@ -19,7 +19,7 @@ import 'package:graduation_project_movies/utils/dialog_utils.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../cubits/language_cubit/language_cubit.dart';
-import '../../../l10n/app_localizations.dart';
+// import '../../../l10n/app_localizations.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

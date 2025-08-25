@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 
+import 'package:graduation_project_movies/api/end_points.dart';
 import 'package:graduation_project_movies/models/login_response.dart';
 //import 'api_constants.dart';
 //import 'end_points.dart';
@@ -11,7 +12,7 @@ import 'package:http/http.dart' as http;
 
 class ApiManager {
   Future<LoginResponse?> login(String email, String password) async {
-    Uri url = Uri.https(ApiConstants.baseUrl, Endpoints.loginApi);
+    Uri url = Uri.https(ApiConstants.authBaseUrl, Endpoints.loginApi);
 
     try {
       var headers = {
