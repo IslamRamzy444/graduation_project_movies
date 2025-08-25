@@ -1,9 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:graduation_project_movies/ui/auth/register/cubit/register_view_model.dart';
 import 'package:graduation_project_movies/ui/auth/register/cubit/user_states.dart';
+
 //import 'package:graduation_project_movies/cubits/language_cubit/language_cubit.dart';
 //import 'package:graduation_project_movies/l10n/app_localizations.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_Elevated_button.dart';
@@ -16,8 +19,8 @@ import 'package:graduation_project_movies/utils/dialog_utils.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../cubits/language_cubit/language_cubit.dart';
+import '../../../l10n/app_localizations.dart';
 
-//import '../../../l10n/app_localizations.dart';
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
