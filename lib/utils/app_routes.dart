@@ -5,8 +5,7 @@ class AppRoutes {
   static const String onBoardingScreen2RouteName = "onboarding_screen2";
   static const String forgetPasswordScreenRouteName = "forget_password_screen";
   static const String updateProfileScreenRouteName = "updateProfileScreen";
-  static const String registerScreenRouteName="register-screen";
-  static const String homeScreenRouteName="home_screen";
+  static const String registerScreenRouteName = "register-screen";
+  static const String homeScreenRouteName = "home_screen";
+  static const String searchScreenRouteName = "search_screen";
 }
-
-

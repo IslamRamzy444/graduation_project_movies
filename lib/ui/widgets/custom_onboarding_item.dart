@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project_movies/l10n/app_localizations.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 // import '../../l10n/app_localizations.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_styles.dart';
@@ -15,7 +16,7 @@ class CustomOnboardingItem extends StatelessWidget {
   VoidCallback onBackPressed;
   bool isFirstScreen;
   bool isLastScreen;
-  
+
   CustomOnboardingItem({
     super.key,
     required this.img,
@@ -32,7 +33,7 @@ class CustomOnboardingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    
+
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -65,13 +66,17 @@ class CustomOnboardingItem extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: AppStyles.bold24White,
                 ),
-                isLastScreen ? SizedBox.shrink() : SizedBox(height: height * 0.02),
+                isLastScreen
+                    ? SizedBox.shrink()
+                    : SizedBox(height: height * 0.02),
                 Text(
                   secondText ?? "",
                   textAlign: TextAlign.center,
                   style: AppStyles.regular20White,
                 ),
-                isLastScreen ? SizedBox.shrink() : SizedBox(height: height * 0.02),
+                isLastScreen
+                    ? SizedBox.shrink()
+                    : SizedBox(height: height * 0.02),
                 _buildButtons(context),
               ],
             ),

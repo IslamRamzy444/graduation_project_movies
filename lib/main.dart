@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return BlocBuilder<LanguageCubit, Locale>(builder: (context, locale) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.loginScreenRouteName,
+        initialRoute: AppRoutes.homeScreenRouteName,
         routes: {
           AppRoutes.loginScreenRouteName: (context) => LoginScreen(),
           AppRoutes.introScreenRouteName: (context) => IntroScreen(),
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           AppRoutes.updateProfileScreenRouteName: (context) =>
               UpdateProfileScreen(),
           AppRoutes.registerScreenRouteName: (context) => RegisterScreen(),
-          AppRoutes.homeScreenRouteName:(context)=>HomeScreen()
+          AppRoutes.homeScreenRouteName: (context) => HomeScreen()
         },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,

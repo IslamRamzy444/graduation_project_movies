@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
+
 import 'package:graduation_project_movies/l10n/app_localizations.dart';
-=======
+
 //import 'package:graduation_project_movies/l10n/app_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
->>>>>>> a66eca1b616a5e172f64a77dc0a321aeacd50ec0
+// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:graduation_project_movies/ui/widgets/custom_Elevated_button.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_text_form_field.dart';
 import 'package:graduation_project_movies/utils/app_assets.dart';

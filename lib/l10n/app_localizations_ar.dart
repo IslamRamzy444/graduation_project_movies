@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -146,7 +145,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'كلمة المرور المعاد إدخالها لا تطابق كلمة المرور';
 
   @override
-  String get empty_phone_error => 'Please enter a phone number';
+  String get empty_phone_error => 'يرجى إدخال رقم الهاتف';
 
   @override
   String get login_loading => 'جاري تسجيل الدخول...';
@@ -158,5 +157,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get login_with_google_loading => 'جاري التسجيل...';
 
   @override
-  String get ok => 'تم';
+  String get ok => 'حسنًا';
+
+  @override
+  String get success => 'نجاح';
+
+  @override
+  String get failure => 'فشل';
+
+  @override
+  String get loading => 'جارٍ التحميل...';
 }
