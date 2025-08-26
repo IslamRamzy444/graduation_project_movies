@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project_movies/di/di.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/home_Screen.dart';
 import 'package:graduation_project_movies/ui/home/profile_screen/profile_screen.dart';
 import 'package:graduation_project_movies/ui/home/search_screen/search_screen.dart';
@@ -18,7 +19,7 @@ class _HomeState extends State<Home> {
   int currentIndex = 0;
 
   List<Widget> screens = [
-    HomeScreen(),
+    HomeScreen(moviesRepo: injectMovieRepository(),),
     SearchScreen(),
     BrowseScreen(),
     ProfileScreen(),
