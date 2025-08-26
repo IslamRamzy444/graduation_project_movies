@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -120,4 +121,42 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pick_avatar => 'اختر صورة رمزية';
+
+  @override
+  String get empty_name_error => 'يرجى إدخال اسم المستخدم';
+
+  @override
+  String get empty_email_error => 'يرجى إدخال عنوان البريد الإلكتروني';
+
+  @override
+  String get invalid_email_error => 'يرجى إدخال عنوان بريد إلكتروني صالح';
+
+  @override
+  String get empty_password_error => 'يرجى إدخال كلمة المرور';
+
+  @override
+  String get empty_re_password_error => 'يرجى إدخال تأكيد كلمة المرور';
+
+  @override
+  String get short_password_error =>
+      'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل';
+
+  @override
+  String get mis_match_re_password =>
+      'كلمة المرور المعاد إدخالها لا تطابق كلمة المرور';
+
+  @override
+  String get empty_phone_error => 'Please enter a phone number';
+
+  @override
+  String get login_loading => 'جاري تسجيل الدخول...';
+
+  @override
+  String get login_succeeded => 'تم تسجيل الدخول بنجاح';
+
+  @override
+  String get login_with_google_loading => 'جاري التسجيل...';
+
+  @override
+  String get ok => 'تم';
 }

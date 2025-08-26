@@ -101,7 +101,7 @@ abstract class AppLocalizations {
   /// No description provided for @boarding_title_one.
   ///
   /// In en, this message translates to:
-  /// **'Find Your Next Favorite Movie Here'**
+  /// **'Find Your Next\nFavorite Movie Here'**
   String get boarding_title_one;
 
   /// No description provided for @boarding_content_one.
@@ -313,6 +313,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Pick Avatar'**
   String get pick_avatar;
+
+  /// No description provided for @empty_name_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a user name'**
+  String get empty_name_error;
+
+  /// No description provided for @empty_email_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter an email address'**
+  String get empty_email_error;
+
+  /// No description provided for @invalid_email_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address'**
+  String get invalid_email_error;
+
+  /// No description provided for @empty_password_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a password'**
+  String get empty_password_error;
+
+  /// No description provided for @empty_re_password_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a re password'**
+  String get empty_re_password_error;
+
+  /// No description provided for @short_password_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Your password must have at least 8 chars'**
+  String get short_password_error;
+
+  /// No description provided for @mis_match_re_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Your re password doesn\'t match with your password'**
+  String get mis_match_re_password;
+
+  /// No description provided for @empty_phone_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a phone number'**
+  String get empty_phone_error;
+
+  /// No description provided for @login_loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Login...'**
+  String get login_loading;
+
+  /// No description provided for @login_succeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Succeeded'**
+  String get login_succeeded;
+
+  /// No description provided for @login_with_google_loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Login with Google...'**
+  String get login_with_google_loading;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'Ok'**
+  String get ok;
 }
 
 class _AppLocalizationsDelegate

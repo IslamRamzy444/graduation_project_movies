@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9,7 +10,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get boarding_title_one => 'Find Your Next Favorite Movie Here';
+  String get boarding_title_one => 'Find Your Next\nFavorite Movie Here';
 
   @override
   String get boarding_content_one =>
@@ -120,4 +121,41 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pick_avatar => 'Pick Avatar';
+
+  @override
+  String get empty_name_error => 'Please enter a user name';
+
+  @override
+  String get empty_email_error => 'Please enter an email address';
+
+  @override
+  String get invalid_email_error => 'Please enter a valid email address';
+
+  @override
+  String get empty_password_error => 'Please enter a password';
+
+  @override
+  String get empty_re_password_error => 'Please enter a re password';
+
+  @override
+  String get short_password_error => 'Your password must have at least 8 chars';
+
+  @override
+  String get mis_match_re_password =>
+      'Your re password doesn\'t match with your password';
+
+  @override
+  String get empty_phone_error => 'Please enter a phone number';
+
+  @override
+  String get login_loading => 'Login...';
+
+  @override
+  String get login_succeeded => 'Login Succeeded';
+
+  @override
+  String get login_with_google_loading => 'Login with Google...';
+
+  @override
+  String get ok => 'Ok';
 }
