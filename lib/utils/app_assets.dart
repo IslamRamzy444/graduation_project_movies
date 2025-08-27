@@ -14,7 +14,6 @@ class AppAssets {
   static const drStrangeImage = 'assets/images/drStrangeImg.png';
   static const nineteen17Image = 'assets/images/1917Img.png';
 
-
   static const forgetPassword = 'assets/images/Forgot password-bro 1.png';
 
   static const personIcon = "assets/images/person_icon.png";
@@ -28,6 +27,16 @@ class AppAssets {
   static const avatar7 = 'assets/images/avatar_7.png';
   static const avatar8 = 'assets/images/avatar_8.png';
   static const avatar9 = 'assets/images/avatar_9.png';
-  static const userNameIcon="assets/images/user-name-icon.png";
-
+  static const userNameIcon = "assets/images/user-name-icon.png";
+  static const homeIcon = "assets/images/homeIcon.png";
+  static const browseIcon = "assets/images/browseIcon.png";
+  static const profileIcon = "assets/images/profileIcon.png";
+  static const searchIcon = "assets/images/searchIcon.png";
+  static const availableNowImage = "assets/images/availableNowImage.png";
+  static const watchNowImage = "assets/images/watchNowImage.png";
+  static const movieImage = "assets/images/movieImage.png";
+  static const exitIcon = "assets/images/exit_icon.png";
+  static const watchIcon = "assets/images/watch_list.png";
+  static const historyIcon = "assets/images/history.png";
+  static const emptyWatchList = "assets/images/Empty 1.png";
 }
