@@ -12,7 +12,7 @@ class ApiManager {
       ApiConstants.baseUrl,
       ApiConstants.moviesListEndPoint,
       {
-        "limit": "10",
+        "limit": "30",
         "minimum_rating": "7",
         "sort_by": "like_count",
         "order_by": "desc",
@@ -33,7 +33,7 @@ class ApiManager {
       ApiConstants.baseUrl,
       ApiConstants.moviesListEndPoint,
       {
-        "limit": "10",
+        "limit": "20",
         "minimum_rating": "7",
         "sort_by": "like_count",
         "order_by": "desc",

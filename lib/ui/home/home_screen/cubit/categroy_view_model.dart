@@ -5,6 +5,7 @@ import '../../../../api/api_manager.dart';
 
 class CategoriesViewModel extends Cubit<CategoriesState>{
   CategoriesViewModel():super(CategoriesLoading());
+  String currentGenre = "Action"; // Add current genre variable
   List<String> genres = [
     "Action",
     "Adventure",
@@ -43,8 +44,8 @@ class CategoriesViewModel extends Cubit<CategoriesState>{
   void getAllCategories() async{
     try{
       emit(CategoriesLoading());
-      String nextGenre = getNextGenre(); // Get next genre first
-      var response = await ApiManager.getMoviesByCategory(nextGenre);
+      currentGenre = getNextGenre(); // Set the current genre
+      var response = await ApiManager.getMoviesByCategory(currentGenre);
       if(response?.status=='error'){
         emit(CategoriesFailure(errorMessage: response?.message ?? ''));
       }else if(response?.status=='ok') {

@@ -18,12 +18,10 @@ class CategoryItem extends StatefulWidget {
 
 class _CategoryItemState extends State<CategoryItem> {
    static final CategoriesViewModel categoriesViewModel = CategoriesViewModel();
-   String genre = "Action";
    
    @override
    void initState() {
      super.initState();
-     genre = categoriesViewModel.getNextGenre();
      categoriesViewModel.getAllCategories();
    }
   @override
@@ -41,7 +39,7 @@ class _CategoryItemState extends State<CategoryItem> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    genre,
+                    categoriesViewModel.currentGenre,
                     style: AppStyles.regular20White,
                   ),
                   InkWell(
