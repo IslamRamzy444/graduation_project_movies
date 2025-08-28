@@ -4,13 +4,13 @@ import 'package:graduation_project_movies/ui/auth/login/cubit/login_navigator.da
 import 'package:graduation_project_movies/ui/auth/login/cubit/login_states.dart';
 import 'package:graduation_project_movies/ui/auth/login/cubit/login_view_model.dart';
 import 'package:graduation_project_movies/utils/alert_dialog.dart';
-//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../cubits/language_cubit/language_cubit.dart';
-import '../../../l10n/app_localizations.dart';
+// import '../../../l10n/app_localizations.dart';
 import '../../../utils/app_assets.dart';
 import '../../../utils/app_styles.dart';
 import '../../widgets/custom_Elevated_button.dart';

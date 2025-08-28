@@ -18,6 +18,6 @@ class AppStyles {
   static TextStyle semiBold20Black=GoogleFonts.inter(fontWeight: FontWeight.w600,fontSize: 20,color: AppColors.blackColor);
   static TextStyle semiBold20Primary=GoogleFonts.inter(fontWeight: FontWeight.w600,fontSize: 20,color: AppColors.primaryColor);
   static TextStyle bold24White=GoogleFonts.inter(fontWeight: FontWeight.bold,fontSize: 20,color: AppColors.whiteColor,decoration: TextDecoration.none);
-  static TextStyle regular15PrimaryRoboto = GoogleFonts.roboto(
-      fontWeight: FontWeight.w400, fontSize: 15, color: AppColors.primaryColor);
+  static TextStyle regular15PrimaryRoboto = GoogleFonts.roboto(fontWeight: FontWeight.w400, fontSize: 15, color: AppColors.primaryColor);
+  static TextStyle bold20WhiteRoboto=GoogleFonts.roboto(fontWeight: FontWeight.bold,fontSize: 20,color: AppColors.whiteColor);
 }

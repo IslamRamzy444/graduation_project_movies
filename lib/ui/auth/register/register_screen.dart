@@ -69,7 +69,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               posActionName: AppLocalizations.of(context)!.ok,
               posAction: (){
                 Navigator.pop(context);
-                Navigator.pushReplacementNamed(context, AppRoutes.homeScreenRouteName);
               }
             );
           }else if(state is UserErrorState){
