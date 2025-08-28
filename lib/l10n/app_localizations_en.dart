@@ -158,4 +158,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ok => 'Ok';
+
+  @override
+  String get success => 'Success';
+
+  @override
+  String get failure => 'Failure';
+
+  @override
+  String get loading => 'Loading...';
 }
