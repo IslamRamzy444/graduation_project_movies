@@ -1,17 +1,13 @@
-import 'package:graduation_project_movies/models/login_response.dart';
-
 abstract class LoginStates {}
+
+class LoginInitialState extends LoginStates {}
 
 class LoginLoadingState extends LoginStates {}
 
 class LoginErrorState extends LoginStates {
-  String errorMessage;
+  String error;
 
-  LoginErrorState({required this.errorMessage});
+  LoginErrorState({required this.error});
 }
 
-class LoginSuccessState extends LoginStates {
-  LoginResponse successMessage;
-
-  LoginSuccessState({required this.successMessage});
-}
+class LoginSuccessState extends LoginStates {}

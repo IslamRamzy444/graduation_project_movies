@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_movies/l10n/app_localizations.dart';
-
 //import 'package:graduation_project_movies/models/dummy_class.dart';
 import 'package:graduation_project_movies/ui/home/profile_screen/profile_screen_tab.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_Elevated_button.dart';
 import 'package:graduation_project_movies/utils/app_assets.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
+import 'package:graduation_project_movies/utils/app_routes.dart';
 
 import '../../../utils/app_styles.dart';
 
 class ProfileScreen extends StatefulWidget {
-  ProfileScreen({super.key});
+  String? token;
+
+  ProfileScreen({super.key, required this.token});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -87,7 +89,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     CustomElevatedButton(
                       buttonText: AppLocalizations.of(context)!.edit_profile,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, AppRoutes.updateProfileScreenRouteName);
+                      },
                       size: Size(width * 0.64, height * 0.07),
                     ),
                     CustomElevatedButton(
