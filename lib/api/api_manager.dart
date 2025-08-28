@@ -12,8 +12,7 @@ import 'package:graduation_project_movies/api/api_end_points.dart';
 import 'package:graduation_project_movies/models/user_response.dart';
 
 class ApiManager {
-
- static Future<MoviesListResponse?> getAllMovies()async{
+  static Future<MoviesListResponse?> getAllMovies() async {
     Uri url = Uri.https(
       ApiConstants.baseUrl,
       ApiConstants.moviesListEndPoint,
@@ -34,7 +33,8 @@ class ApiManager {
       throw e;
     }
   }
- static Future<MoviesListResponse?> getMoviesByCategory(String genre)async{
+
+  static Future<MoviesListResponse?> getMoviesByCategory(String genre) async {
     Uri url = Uri.https(
       ApiConstants.baseUrl,
       ApiConstants.moviesListEndPoint,
@@ -56,8 +56,9 @@ class ApiManager {
       throw e;
     }
   }
+
   Future<LoginResponse?> login(String email, String password) async {
-    Uri url = Uri.https(ApiConstants.authBaseUrl,ApiEndPoints.loginApi);
+    Uri url = Uri.https(ApiConstants.authBaseUrl, ApiEndPoints.loginApi);
 
     try {
       var headers = {
@@ -101,6 +102,38 @@ class ApiManager {
         "avaterId":avatarId
       }
       ));
+      var body = response.body;
+      var json = jsonDecode(body);
+      return UserResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static Future<UserResponse?> getProfile(String credential) async {
+    try {
+      Uri url = Uri.https(ApiConstants.authBaseUrl, ApiEndPoints.profileApi);
+      var response = await http.get(url, headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $credential"
+      });
+      var json = jsonDecode(response.body);
+      return UserResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static Future<UserResponse?> updateProfileData(
+      String credential, String email, int avatarId) async {
+    try {
+      Uri url = Uri.https(ApiConstants.authBaseUrl, ApiEndPoints.profileApi);
+      var response = await http.patch(url,
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $credential"
+          },
+          body: jsonEncode({"email": email, "avaterId": avatarId}));
       var body=response.body;
       var json=jsonDecode(body);
       return UserResponse.fromJson(json);
@@ -108,70 +141,36 @@ class ApiManager {
       throw e;
     }
   }
-  static Future<UserResponse?> getProfile(String credential)async{
-    try{
-      Uri url=Uri.https(ApiConstants.authBaseUrl,ApiEndPoints.profileApi);
-      var response=await http.get(url,headers: {
+
+  static Future<UserResponse?> deleteUser(String credential) async {
+    try {
+      Uri url = Uri.https(ApiConstants.authBaseUrl, ApiEndPoints.profileApi);
+      var response = await http.delete(url, headers: {
         "Content-Type": "application/json",
-        "Authorization":"Bearer $credential"
+        "Authorization": "Bearer $credential"
       });
-      var json=jsonDecode(response.body);
+      var json = jsonDecode(response.body);
       return UserResponse.fromJson(json);
-    }catch(e){
+    } catch (e) {
       throw e;
     }
   }
-  static Future<UserResponse?> updateProfileData(String credential,String email,int avatarId)async{
-    try{
-      Uri url=Uri.https(ApiConstants.authBaseUrl,ApiEndPoints.profileApi);
-      var response=await http.patch(
-        url,
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization":"Bearer $credential"
-        },
-        body: jsonEncode({
-          "email":email,
-          "avaterId":avatarId
-        })
-      );
-      var body=response.body;
-      var json=jsonDecode(body);
+
+  static Future<UserResponse?> resetPassword(
+      String credential, String oldPassword, String newPassword) async {
+    try {
+      Uri url =
+          Uri.https(ApiConstants.authBaseUrl, ApiEndPoints.resetPasswordApi);
+      var response = await http.patch(url,
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $credential"
+          },
+          body: jsonEncode(
+              {"oldPassword": oldPassword, "newPassword": newPassword}));
+      var json = jsonDecode(response.body);
       return UserResponse.fromJson(json);
-    }catch(e){
-      throw e;
-    }
-  }
-  static Future<UserResponse?> deleteUser(String credential)async{
-    try{
-      Uri url=Uri.https(ApiConstants.authBaseUrl,ApiEndPoints.profileApi);
-      var response=await http.delete(url,headers: {
-        "Content-Type": "application/json",
-        "Authorization":"Bearer $credential"
-      });
-      var json=jsonDecode(response.body);
-      return UserResponse.fromJson(json);
-    }catch(e){
-      throw e;
-    }
-  }
-  static Future<UserResponse?> resetPassword(String credential,String oldPassword,String newPassword)async{
-    try{
-      Uri url=Uri.https(ApiConstants.authBaseUrl,ApiEndPoints.resetPasswordApi);
-      var response=await http.patch(
-        url,
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization":"Bearer $credential"
-        },
-        body: jsonEncode({
-          "oldPassword":oldPassword,
-          "newPassword":newPassword
-        })
-      );
-      var json=jsonDecode(response.body);
-      return UserResponse.fromJson(json);
-    }catch(e){
+    } catch (e) {
       throw e;
     }
   }

@@ -9,5 +9,6 @@ class UserErrorState extends UserStates{
 class UserSuccessState extends UserStates{
   String successMessage;
   Data userData;
-  UserSuccessState({required this.successMessage,required this.userData});
+
+  UserSuccessState({required this.successMessage, required this.userData});
 }

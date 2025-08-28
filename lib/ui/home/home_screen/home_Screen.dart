@@ -17,7 +17,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   int _currentIndex = 0;
   late final MoviesViewModel _moviesViewModel;
 
@@ -38,81 +37,92 @@ class _HomeScreenState extends State<HomeScreen> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: BlocBuilder<MoviesViewModel,MoviesState>(
-          bloc:_moviesViewModel,
-          builder: (context, state) {
-            if(state is MoviesSuccess){
-              final movies = state.moviesList ?? [];
-              final bgIndex = _currentIndex < movies.length ? _currentIndex : 0;
-              final ImageProvider bgImage = movies.isNotEmpty
-                  ? NetworkImage(movies[bgIndex].mediumCoverImage!)
-                  : AssetImage(AppAssets.movieImage);
-              return Stack(
-                children: [
-                  Positioned.fill(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: bgImage,
-                          fit: BoxFit.cover,
-                          colorFilter: ColorFilter.mode(
-                            Colors.black.withOpacity(0.5),
-                            BlendMode.dstOut,
-                          ),
+      body: BlocBuilder<MoviesViewModel, MoviesState>(
+        bloc: _moviesViewModel,
+        builder: (context, state) {
+          if (state is MoviesSuccess) {
+            final movies = state.moviesList ?? [];
+            final bgIndex = _currentIndex < movies.length ? _currentIndex : 0;
+            final ImageProvider bgImage = movies.isNotEmpty
+                ? NetworkImage(movies[bgIndex].mediumCoverImage!)
+                : AssetImage(AppAssets.movieImage);
+            return Stack(
+              children: [
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: bgImage,
+                        fit: BoxFit.cover,
+                        colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(0.5),
+                          BlendMode.dstOut,
                         ),
                       ),
                     ),
                   ),
-                  SafeArea(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            width: width,
-                            height: height * 0.68,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Image.asset(AppAssets.availableNowImage),
-                                CarouselSlider(
-                                  options: CarouselOptions(
-                                      height: 400.0,
-                                      enlargeCenterPage: true,
-                                      viewportFraction: 0.6,
-                                      onPageChanged: (index, reason) {
-                                        setState(() {
-                                          _currentIndex = index;
-                                        });
-                                      }),
-                                  items: state.moviesList?.map((i) {
-                                    return Builder(
-                                      builder: (BuildContext context) {
-                                        return FilmCard(
-                                          image: i.mediumCoverImage!,
-                                          rating: i.rating,
-                                        );
-                                      },
-                                    );
-                                  }).toList(),
-                                ),
-                                Image.asset(AppAssets.watchNowImage),
-                              ],
-                            ),
+                ),
+                SafeArea(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: width,
+                          height: height * 0.68,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Image.asset(AppAssets.availableNowImage),
+                              CarouselSlider(
+                                options: CarouselOptions(
+                                    height: 400.0,
+                                    enlargeCenterPage: true,
+                                    viewportFraction: 0.6,
+                                    onPageChanged: (index, reason) {
+                                      setState(() {
+                                        _currentIndex = index;
+                                      });
+                                    }),
+                                items: state.moviesList?.map((i) {
+                                  return Builder(
+                                    builder: (BuildContext context) {
+                                      return FilmCard(
+                                        image: i.mediumCoverImage!,
+                                        rating: i.rating,
+                                      );
+                                    },
+                                  );
+                                }).toList(),
+                              ),
+                              Expanded(
+                                  child: Image.asset(AppAssets.watchNowImage)),
+                            ],
                           ),
-                          CategoryItem()
-
-                        ],
-                      ),
+                        ),
+                        CategoryItem()
+                      ],
                     ),
-                  )
-                ],
-              );
-            }else if(state is MoviesFailure){
-              return SafeArea(child: Center(child: Text(state.errorMessage,style: AppStyles.regular20White,),));
-            }else{
-              return SafeArea(child: Center(child: CircularProgressIndicator(color:AppColors.primaryColor,),));
-            }
-          },
+                  ),
+                )
+              ],
+            );
+          } else if (state is MoviesFailure) {
+            return SafeArea(
+                child: Center(
+              child: Text(
+                state.errorMessage,
+                style: AppStyles.regular20White,
+              ),
+            ));
+          } else {
+            return SafeArea(
+                child: Center(
+              child: CircularProgressIndicator(
+                color: AppColors.primaryColor,
+              ),
+            ));
+          }
+        },
       ),
     );
   }

@@ -5,16 +5,16 @@ import 'package:graduation_project_movies/ui/home/home_screen/cubit/movies_state
 class MoviesViewModel extends Cubit<MoviesState> {
   MoviesViewModel() : super(MoviesLoading());
 
-  void getAllMovies() async{
-    try{
+  void getAllMovies() async {
+    try {
       emit(MoviesLoading());
       var response = await ApiManager.getAllMovies();
-      if(response?.status=='error'){
+      if (response?.status == 'error') {
         emit(MoviesFailure(errorMessage: response?.message ?? ''));
-      }else if(response?.status=='ok') {
+      } else if (response?.status == 'ok') {
         emit(MoviesSuccess(moviesList: response?.data?.movies));
       }
-    }catch(e){
+    } catch (e) {
       emit(MoviesFailure(errorMessage: e.toString()));
     }
   }

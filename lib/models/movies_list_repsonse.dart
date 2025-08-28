@@ -1,4 +1,3 @@
-
 class MoviesListResponse {
   MoviesListResponse({
     this.status,
@@ -12,7 +11,7 @@ class MoviesListResponse {
   MoviesListResponse.fromJson(dynamic json) {
     status = json['status'];
     code = json['code'];
-    message= json['message'];
+    message = json['message'];
     statusMessage = json['status_message'];
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
     meta = json['@meta'] != null ? Meta.fromJson(json['@meta']) : null;

@@ -1,9 +1,9 @@
-
 class UserResponse {
   String? message;
   Data? data;
   int? statusCode;
-  UserResponse({this.message, this.data,this.statusCode});
+
+  UserResponse({this.message, this.data, this.statusCode});
 
   UserResponse.fromJson(Map<String, dynamic> json) {
     if (json["message"] is List) {
@@ -22,7 +22,7 @@ class UserResponse {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["message"] = message;
-    if(data != null) {
+    if (data != null) {
       _data["data"] = data?.toJson();
     }
     return _data;
@@ -40,7 +40,16 @@ class Data {
   String? updatedAt;
   int? v;
 
-  Data({this.email, this.password, this.name, this.phone, this.avaterId, this.id, this.createdAt, this.updatedAt, this.v});
+  Data(
+      {this.email,
+      this.password,
+      this.name,
+      this.phone,
+      this.avaterId,
+      this.id,
+      this.createdAt,
+      this.updatedAt,
+      this.v});
 
   Data.fromJson(Map<String, dynamic> json) {
     email = json["email"];

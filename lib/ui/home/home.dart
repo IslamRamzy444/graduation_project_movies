@@ -16,7 +16,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  
   int currentIndex = 0;
 
   List<Widget> screens = [
@@ -37,13 +36,13 @@ class _HomeState extends State<Home> {
           Positioned.fill(
             child: screens[currentIndex],
           ),
-
           Positioned(
-            bottom: height*0.03,
+            bottom: height * 0.03,
             left: width * 0.08,
             right: width * 0.08,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: width*0.02, vertical: height*0.015),
+              padding: EdgeInsets.symmetric(
+                  horizontal: width * 0.02, vertical: height * 0.015),
               decoration: BoxDecoration(
                 color: AppColors.darkGreyColor,
                 borderRadius: BorderRadius.circular(10),

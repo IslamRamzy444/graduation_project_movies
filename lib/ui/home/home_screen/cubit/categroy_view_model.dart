@@ -3,8 +3,8 @@ import 'package:graduation_project_movies/ui/home/home_screen/cubit/category_sta
 
 import '../../../../api/api_manager.dart';
 
-class CategoriesViewModel extends Cubit<CategoriesState>{
-  CategoriesViewModel():super(CategoriesLoading());
+class CategoriesViewModel extends Cubit<CategoriesState> {
+  CategoriesViewModel() : super(CategoriesLoading());
   String currentGenre = "Action"; // Add current genre variable
   List<String> genres = [
     "Action",
@@ -36,25 +36,25 @@ class CategoriesViewModel extends Cubit<CategoriesState>{
   ];
 
   int currentIndex = 0;
+
   String getNextGenre() {
     String genre = genres[currentIndex];
     currentIndex = (currentIndex + 1) % genres.length; // loop back after last
     return genre;
   }
-  void getAllCategories() async{
-    try{
+
+  void getAllCategories() async {
+    try {
       emit(CategoriesLoading());
       currentGenre = getNextGenre(); // Set the current genre
       var response = await ApiManager.getMoviesByCategory(currentGenre);
-      if(response?.status=='error'){
+      if (response?.status == 'error') {
         emit(CategoriesFailure(errorMessage: response?.message ?? ''));
-      }else if(response?.status=='ok') {
+      } else if (response?.status == 'ok') {
         emit(CategoriesSuccess(categoriesList: response?.data!.movies));
       }
-    }catch(e){
+    } catch (e) {
       emit(CategoriesFailure(errorMessage: e.toString()));
     }
   }
-
 }
-

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_movies/l10n/app_localizations.dart';
-import 'package:graduation_project_movies/models/dummy_class.dart';
+
+//import 'package:graduation_project_movies/models/dummy_class.dart';
 import 'package:graduation_project_movies/ui/home/profile_screen/profile_screen_tab.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_Elevated_button.dart';
 import 'package:graduation_project_movies/utils/app_assets.dart';
@@ -134,14 +135,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: movieList.isEmpty
                 ? Image.asset(AppAssets.emptyIcon)
                 : ListView.builder(
-              itemBuilder: (context, index) {
-                return null;
-              },
-              itemCount: movieList.length,
-            ),
+                    itemBuilder: (context, index) {
+                      return null;
+                    },
+                    itemCount: movieList.length,
+                  ),
           )
         ],
       )),
     );
   }
 }
+
+class DummyClass {}

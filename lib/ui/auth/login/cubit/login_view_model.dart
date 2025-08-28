@@ -5,7 +5,6 @@ import 'package:graduation_project_movies/ui/auth/login/cubit/login_navigator.da
 import 'package:graduation_project_movies/ui/auth/login/cubit/login_states.dart';
 
 import '../../../../api/api_manager.dart';
-
 class LoginViewModel extends Cubit<LoginStates> {
   var emailController = TextEditingController(text: 'amr2@gmail.com');
   var passwordController = TextEditingController(text: 'Amr2510@');

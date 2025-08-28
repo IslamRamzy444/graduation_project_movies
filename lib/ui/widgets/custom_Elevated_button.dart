@@ -23,9 +23,8 @@ class CustomElevatedButton extends StatelessWidget {
     required this.buttonText,
     required this.onPressed,
     this.borderColor,
-    this.size,
-    this.suffixIcon
-  });
+      this.size,
+      this.suffixIcon});
 
   @override
   Widget build(BuildContext context) {

@@ -15,11 +15,9 @@ import 'package:graduation_project_movies/utils/app_theme.dart';
 
 import 'cubits/language_cubit/language_cubit.dart';
 
-
 import 'l10n/app_localizations.dart';
 
 // import 'l10n/app_localizations.dart';
-
 
 void main() {
   runApp(
