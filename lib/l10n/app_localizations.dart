@@ -362,6 +362,37 @@ abstract class AppLocalizations {
   /// **'Please enter a phone number'**
   String get empty_phone_error;
 
+
+  /// No description provided for @wish_list.
+  ///
+  /// In en, this message translates to:
+  /// **'Wish List'**
+  String get wish_list;
+
+  /// No description provided for @history.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get history;
+
+  /// No description provided for @watch_list.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch List'**
+  String get watch_list;
+
+  /// No description provided for @edit_profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get edit_profile;
+
+  /// No description provided for @exit.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit'**
+  String get exit;
+
   /// No description provided for @login_loading.
   ///
   /// In en, this message translates to:
@@ -385,6 +416,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ok'**
   String get ok;
+
 }
 
 class _AppLocalizationsDelegate

@@ -30,4 +30,16 @@ class AppAssets {
   static const avatar9 = 'assets/images/avatar_9.png';
   static const userNameIcon="assets/images/user-name-icon.png";
 
+  static const homeIcon = "assets/images/homeIcon.png";
+  static const browseIcon = "assets/images/browseIcon.png";
+  static const profileIcon = "assets/images/profileIcon.png";
+  static const searchIcon = "assets/images/searchIcon.png";
+  static const availableNowImage = "assets/images/availableNowImage.png";
+  static const watchNowImage = "assets/images/watchNowImage.png";
+  static const movieImage = "assets/images/movieImage.png";
+
+  static const exitIcon = "assets/images/exitIcon.png";
+  static const historyIcon = "assets/images/historyIcon.png";
+  static const watchListIcon = "assets/images/watchListIcon.png";
+  static const emptyIcon = "assets/images/emptyIcon.png";
 }

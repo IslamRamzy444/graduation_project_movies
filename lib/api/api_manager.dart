@@ -1,15 +1,61 @@
 import 'dart:convert';
 
 
+import 'package:graduation_project_movies/api/api_constants.dart';
+import 'package:http/http.dart' as http;
+
+import '../models/movies_list_repsonse.dart';
 import 'package:graduation_project_movies/models/login_response.dart';
 //import 'api_constants.dart';
 //import 'end_points.dart';
-import 'package:graduation_project_movies/api/api_constants.dart';
 import 'package:graduation_project_movies/api/api_end_points.dart';
 import 'package:graduation_project_movies/models/user_response.dart';
-import 'package:http/http.dart' as http;
 
 class ApiManager {
+
+ static Future<MoviesListResponse?> getAllMovies()async{
+    Uri url = Uri.https(
+      ApiConstants.baseUrl,
+      ApiConstants.moviesListEndPoint,
+      {
+        "limit": "30",
+        "minimum_rating": "7",
+        "sort_by": "like_count",
+        "order_by": "desc",
+        "quality": "1080p"
+      },
+    );
+    try {
+      var response = await http.get(url);
+      var responseBody = response.body;
+      var json = jsonDecode(responseBody);
+      return MoviesListResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+ static Future<MoviesListResponse?> getMoviesByCategory(String genre)async{
+    Uri url = Uri.https(
+      ApiConstants.baseUrl,
+      ApiConstants.moviesListEndPoint,
+      {
+        "limit": "20",
+        "minimum_rating": "7",
+        "sort_by": "like_count",
+        "order_by": "desc",
+        "quality": "1080p",
+        "genre": genre,
+      },
+    );
+    try {
+      var response = await http.get(url);
+      var responseBody = response.body;
+      var json = jsonDecode(responseBody);
+      return MoviesListResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
   Future<LoginResponse?> login(String email, String password) async {
     Uri url = Uri.https(ApiConstants.authBaseUrl,ApiEndPoints.loginApi);
 

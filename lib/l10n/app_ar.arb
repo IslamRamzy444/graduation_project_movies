@@ -42,13 +42,17 @@
   "empty_re_password_error": "يرجى إدخال تأكيد كلمة المرور",
   "short_password_error": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل",
   "mis_match_re_password": "كلمة المرور المعاد إدخالها لا تطابق كلمة المرور",
+  "empty_phone_error": "يرجى إدخال رقم الهاتف",
+  "wish_list" : "قائمة الرغبات",
+  "history" : "تاريخ",
+  "watch_list" : "قائمة المشاهدة",
+  "edit_profile": "تعديل الحساب",
+  "exit": "خروج"
   "login_loading": "جاري تسجيل الدخول...",
   "login_succeeded": "تم تسجيل الدخول بنجاح",
   "login_with_google_loading": "جاري التسجيل...",
-  "empty_phone_error": "يرجى إدخال رقم الهاتف",
   "success": "نجاح",
   "failure": "فشل",
   "ok": "حسنًا",
-  "loading": "جارٍ التحميل...",
-  "edit_profile": "تعديل الملف الشخصي"
+  "loading": "جارٍ التحميل..."
 }
