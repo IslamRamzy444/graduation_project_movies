@@ -42,5 +42,10 @@
   "empty_re_password_error": "يرجى إدخال تأكيد كلمة المرور",
   "short_password_error": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل",
   "mis_match_re_password": "كلمة المرور المعاد إدخالها لا تطابق كلمة المرور",
-  "empty_phone_error": "يرجى إدخال رقم الهاتف"
+  "empty_phone_error": "يرجى إدخال رقم الهاتف",
+  "wish_list" : "قائمة الرغبات",
+  "history" : "تاريخ",
+  "watch_list" : "قائمة المشاهدة",
+  "edit_profile": "تعديل الحساب",
+  "exit": "خروج"
 }

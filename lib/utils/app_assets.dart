@@ -38,4 +38,8 @@ class AppAssets {
   static const watchNowImage = "assets/images/watchNowImage.png";
   static const movieImage = "assets/images/movieImage.png";
 
+  static const exitIcon = "assets/images/exitIcon.png";
+  static const historyIcon = "assets/images/historyIcon.png";
+  static const watchListIcon = "assets/images/watchListIcon.png";
+  static const emptyIcon = "assets/images/emptyIcon.png";
 }
