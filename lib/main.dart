@@ -15,7 +15,11 @@ import 'package:graduation_project_movies/utils/app_theme.dart';
 
 import 'cubits/language_cubit/language_cubit.dart';
 
+
 import 'l10n/app_localizations.dart';
+
+// import 'l10n/app_localizations.dart';
+
 
 void main() {
   runApp(
@@ -30,10 +34,11 @@ class MyApp extends StatelessWidget {
     return BlocBuilder<LanguageCubit, Locale>(builder: (context, locale) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.homeScreenRouteName,
+        initialRoute: AppRoutes.loginScreenRouteName,
         routes: {
           AppRoutes.loginScreenRouteName: (context) => LoginScreen(),
           AppRoutes.introScreenRouteName: (context) => IntroScreen(),
+          AppRoutes.homeScreenRouteName: (context) => Home(),
           AppRoutes.onBoardingScreen1RouteName: (context) =>
               OnboardingFirstScreen(),
           AppRoutes.onBoardingScreen2RouteName: (context) =>
@@ -43,7 +48,6 @@ class MyApp extends StatelessWidget {
           AppRoutes.updateProfileScreenRouteName: (context) =>
               UpdateProfileScreen(),
           AppRoutes.registerScreenRouteName: (context) => RegisterScreen(),
-          AppRoutes.homeScreenRouteName: (context) => Home(),
         },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,

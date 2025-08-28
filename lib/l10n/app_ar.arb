@@ -48,4 +48,11 @@
   "watch_list" : "قائمة المشاهدة",
   "edit_profile": "تعديل الحساب",
   "exit": "خروج"
+  "login_loading": "جاري تسجيل الدخول...",
+  "login_succeeded": "تم تسجيل الدخول بنجاح",
+  "login_with_google_loading": "جاري التسجيل...",
+  "success": "نجاح",
+  "failure": "فشل",
+  "ok": "حسنًا",
+  "loading": "جارٍ التحميل..."
 }

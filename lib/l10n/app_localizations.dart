@@ -362,6 +362,7 @@ abstract class AppLocalizations {
   /// **'Please enter a phone number'**
   String get empty_phone_error;
 
+
   /// No description provided for @wish_list.
   ///
   /// In en, this message translates to:
@@ -391,6 +392,31 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Exit'**
   String get exit;
+
+  /// No description provided for @login_loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Login...'**
+  String get login_loading;
+
+  /// No description provided for @login_succeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Succeeded'**
+  String get login_succeeded;
+
+  /// No description provided for @login_with_google_loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Login with Google...'**
+  String get login_with_google_loading;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'Ok'**
+  String get ok;
+
 }
 
 class _AppLocalizationsDelegate

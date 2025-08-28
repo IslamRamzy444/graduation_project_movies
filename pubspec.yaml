@@ -44,8 +44,6 @@ dependencies:
   flutter_bloc: ^9.1.1
   flutter_native_splash: ^2.4.4
   carousel_slider: ^5.1.1
-  floating_bottom_navigation_bar: ^1.5.2
-  floating_navbar: ^3.0.0
   http: ^1.5.0
 
 dev_dependencies:
@@ -74,6 +72,10 @@ flutter:
   assets:
     - assets/images/
   #   - images/a_dot_ham.jpeg
+l10n:
+  arb-dir: lib/l10n
+  template-arb-file: app_en.arb
+  output-localization-file: app_localizations.dart
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

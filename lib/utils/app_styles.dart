@@ -21,4 +21,5 @@ class AppStyles {
   static TextStyle regular15PrimaryRoboto = GoogleFonts.roboto(fontWeight: FontWeight.w400, fontSize: 15, color: AppColors.primaryColor);
   static TextStyle bold36White=GoogleFonts.inter(fontWeight: FontWeight.bold,fontSize: 36,color: AppColors.whiteColor);
   static TextStyle bold20White=GoogleFonts.inter(fontWeight: FontWeight.bold,fontSize: 20,color: AppColors.whiteColor);
+  static TextStyle bold20WhiteRoboto=GoogleFonts.roboto(fontWeight: FontWeight.bold,fontSize: 20,color: AppColors.whiteColor);
 }
