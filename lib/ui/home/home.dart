@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:graduation_project_movies/ui/home/home_screen/home_Screen.dart';
 import 'package:graduation_project_movies/ui/home/profile_screen/profile_screen.dart';
 import 'package:graduation_project_movies/ui/home/search_screen/search_screen.dart';
@@ -17,18 +16,22 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int currentIndex = 0;
-
-  List<Widget> screens = [
-    HomeScreen(),
-    SearchScreen(),
-    BrowseScreen(),
-    ProfileScreen(),
-  ];
+  String? token;
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as String;
+    token = args;
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
+    List<Widget> screens = [
+      HomeScreen(),
+      SearchScreen(),
+      BrowseScreen(),
+      ProfileScreen(
+        token: token,
+      ),
+    ];
     return Scaffold(
       backgroundColor: AppColors.darkGreyColor,
       body: Stack(

@@ -26,7 +26,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
   bool isHidden = true;
   late LoginViewModel viewModel;
-
+  String? token;
   @override
   void initState() {
     viewModel = LoginViewModel();
@@ -143,16 +143,17 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                           ],
                         ),
                         BlocListener<LoginViewModel, LoginStates>(
-                          listener: (context, state) {
+                          listener: (context, state) async {
                             if (state is LoginLoadingState) {
                               showLoading(
                                   AppLocalizations.of(context)!.login_loading);
                             } else if (state is LoginErrorState) {
-                              showMessage(state.errorMessage);
+                              showMessage(state.error);
                             } else {
                               showSuccessDialog(
                                   AppLocalizations.of(context)!.login_succeeded,
                                   () => navigateToHomeScreen());
+                              token = await viewModel.getToken();
                             }
                           },
                           child: CustomElevatedButton(
@@ -230,6 +231,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                               AppLocalizations.of(context)!.login_succeeded,
                               () => navigateToHomeScreen(),
                             );
+                            token = await viewModel.getToken();
                           },
                         ),
                       ],
@@ -287,7 +289,8 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
 
   @override
   void navigateToHomeScreen() {
-    Navigator.pushReplacementNamed(context, AppRoutes.homeScreenRouteName);
+    Navigator.pushReplacementNamed(context, AppRoutes.homeScreenRouteName,
+        arguments: token);
   }
 
   @override
