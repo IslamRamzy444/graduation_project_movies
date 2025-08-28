@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+//import 'package:graduation_project_movies/l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:graduation_project_movies/utils/app_styles.dart';
 
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home",style: AppStyles.regular16PrimaryRoboto,),
-      ),
+      
     );
   }
 }
