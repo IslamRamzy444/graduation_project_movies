@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:graduation_project_movies/ui/auth/login/cubit/login_navigator.dart';
 import 'package:graduation_project_movies/ui/auth/login/cubit/login_states.dart';
 import 'package:graduation_project_movies/ui/auth/login/cubit/login_view_model.dart';
@@ -8,10 +7,12 @@ import 'package:graduation_project_movies/utils/alert_dialog.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+
 import '../../../cubits/language_cubit/language_cubit.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../utils/app_assets.dart';
 import '../../../utils/app_styles.dart';
+//import '../../../utils/dialog_utils.dart';
 import '../../widgets/custom_Elevated_button.dart';
 import '../../widgets/custom_text_form_field.dart';
 
