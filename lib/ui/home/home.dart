@@ -4,14 +4,14 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 
-class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+class Home extends StatefulWidget {
+  Home({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<Home> createState() => _HomeState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {

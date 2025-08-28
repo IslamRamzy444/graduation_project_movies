@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:graduation_project_movies/ui/auth/login/forget_password.dart';
 import 'package:graduation_project_movies/ui/auth/login/login_screen.dart';
 import 'package:graduation_project_movies/ui/auth/register/register_screen.dart';
-import 'package:graduation_project_movies/ui/home/home_screen.dart';
+import 'package:graduation_project_movies/ui/home/home.dart';
 import 'package:graduation_project_movies/ui/onboarding/intro_screen.dart';
 import 'package:graduation_project_movies/ui/onboarding/onboarding_first_screen.dart';
 import 'package:graduation_project_movies/ui/onboarding/onboarding_second_screen.dart';
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         routes: {
           AppRoutes.loginScreenRouteName: (context) => LoginScreen(),
           AppRoutes.introScreenRouteName: (context) => IntroScreen(),
-          AppRoutes.homeScreenRouteName: (context) => HomeScreen(),
+          AppRoutes.homeScreenRouteName: (context) => Home(),
           AppRoutes.onBoardingScreen1RouteName: (context) =>
               OnboardingFirstScreen(),
           AppRoutes.onBoardingScreen2RouteName: (context) =>
