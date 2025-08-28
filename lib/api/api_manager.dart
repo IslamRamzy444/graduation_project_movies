@@ -1,18 +1,64 @@
 import 'dart:convert';
 
 
-import 'package:graduation_project_movies/api/end_points.dart';
+import 'package:graduation_project_movies/api/api_constants.dart';
+import 'package:http/http.dart' as http;
+
+import '../models/movies_list_repsonse.dart';
 import 'package:graduation_project_movies/models/login_response.dart';
 //import 'api_constants.dart';
 //import 'end_points.dart';
-import 'package:graduation_project_movies/api/api_constants.dart';
 import 'package:graduation_project_movies/api/api_end_points.dart';
 import 'package:graduation_project_movies/models/user_response.dart';
-import 'package:http/http.dart' as http;
 
 class ApiManager {
+  static Future<MoviesListResponse?> getAllMovies() async {
+    Uri url = Uri.https(
+      ApiConstants.baseUrl,
+      ApiConstants.moviesListEndPoint,
+      {
+        "limit": "30",
+        "minimum_rating": "7",
+        "sort_by": "like_count",
+        "order_by": "desc",
+        "quality": "1080p"
+      },
+    );
+    try {
+      var response = await http.get(url);
+      var responseBody = response.body;
+      var json = jsonDecode(responseBody);
+      return MoviesListResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static Future<MoviesListResponse?> getMoviesByCategory(String genre) async {
+    Uri url = Uri.https(
+      ApiConstants.baseUrl,
+      ApiConstants.moviesListEndPoint,
+      {
+        "limit": "20",
+        "minimum_rating": "7",
+        "sort_by": "like_count",
+        "order_by": "desc",
+        "quality": "1080p",
+        "genre": genre,
+      },
+    );
+    try {
+      var response = await http.get(url);
+      var responseBody = response.body;
+      var json = jsonDecode(responseBody);
+      return MoviesListResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+
   Future<LoginResponse?> login(String email, String password) async {
-    Uri url = Uri.https(ApiConstants.authBaseUrl, Endpoints.loginApi);
+    Uri url = Uri.https(ApiConstants.authBaseUrl, ApiEndPoints.loginApi);
 
     try {
       var headers = {
@@ -56,6 +102,38 @@ class ApiManager {
         "avaterId":avatarId
       }
       ));
+      var body = response.body;
+      var json = jsonDecode(body);
+      return UserResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static Future<UserResponse?> getProfile(String credential) async {
+    try {
+      Uri url = Uri.https(ApiConstants.authBaseUrl, ApiEndPoints.profileApi);
+      var response = await http.get(url, headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $credential"
+      });
+      var json = jsonDecode(response.body);
+      return UserResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static Future<UserResponse?> updateProfileData(
+      String credential, String email, int avatarId) async {
+    try {
+      Uri url = Uri.https(ApiConstants.authBaseUrl, ApiEndPoints.profileApi);
+      var response = await http.patch(url,
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $credential"
+          },
+          body: jsonEncode({"email": email, "avaterId": avatarId}));
       var body=response.body;
       var json=jsonDecode(body);
       return UserResponse.fromJson(json);
@@ -63,5 +141,37 @@ class ApiManager {
       throw e;
     }
   }
-}
 
+  static Future<UserResponse?> deleteUser(String credential) async {
+    try {
+      Uri url = Uri.https(ApiConstants.authBaseUrl, ApiEndPoints.profileApi);
+      var response = await http.delete(url, headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $credential"
+      });
+      var json = jsonDecode(response.body);
+      return UserResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static Future<UserResponse?> resetPassword(
+      String credential, String oldPassword, String newPassword) async {
+    try {
+      Uri url =
+          Uri.https(ApiConstants.authBaseUrl, ApiEndPoints.resetPasswordApi);
+      var response = await http.patch(url,
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $credential"
+          },
+          body: jsonEncode(
+              {"oldPassword": oldPassword, "newPassword": newPassword}));
+      var json = jsonDecode(response.body);
+      return UserResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+}

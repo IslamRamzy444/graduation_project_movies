@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project_movies/l10n/app_localizations.dart';
+
+// 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_Elevated_button.dart';
 import 'package:graduation_project_movies/utils/app_assets.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
 import 'package:graduation_project_movies/utils/app_styles.dart';
-
-//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../l10n/app_localizations.dart';
 
 class OnboardingFirstScreen extends StatelessWidget {
   const OnboardingFirstScreen({super.key});

@@ -11,6 +11,8 @@ class CustomElevatedButton extends StatelessWidget {
   VoidCallback onPressed;
   Widget? leadingIcon;
   MainAxisAlignment rowMainAxesAlignment;
+  Size? size;
+  Widget? suffixIcon;
 
   CustomElevatedButton({
     this.rowMainAxesAlignment = MainAxisAlignment.center,
@@ -21,13 +23,15 @@ class CustomElevatedButton extends StatelessWidget {
     required this.buttonText,
     required this.onPressed,
     this.borderColor,
-  });
+      this.size,
+      this.suffixIcon});
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
+          fixedSize: size,
           elevation: 0,
           padding: EdgeInsets.symmetric(
             vertical: screenSize.height * 0.02,
@@ -53,6 +57,8 @@ class CustomElevatedButton extends StatelessWidget {
               buttonText,
               style: buttonTextStyle ?? AppStyles.regular20BlackRoboto,
             ),
+            if (suffixIcon != null) SizedBox(width: screenSize.width * 0.01),
+            (suffixIcon != null) ? suffixIcon! : SizedBox(),
           ],
         ));
   }

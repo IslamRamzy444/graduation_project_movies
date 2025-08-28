@@ -1,3 +1,5 @@
+import 'package:graduation_project_movies/models/user_response.dart';
+
 abstract class UserStates {}
 class UserLoadingState extends UserStates{}
 class UserErrorState extends UserStates{
@@ -6,5 +8,7 @@ class UserErrorState extends UserStates{
 }
 class UserSuccessState extends UserStates{
   String successMessage;
-  UserSuccessState({required this.successMessage});
+  Data userData;
+
+  UserSuccessState({required this.successMessage, required this.userData});
 }

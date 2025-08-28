@@ -11,7 +11,8 @@ class RegisterViewModel extends Cubit<UserStates>{
       if(response?.statusCode==400 || response?.data==null){
         emit(UserErrorState(errorMessage: response!.message!));
       }else if(response?.data!=null){
-        emit(UserSuccessState(successMessage: response!.message!));
+        emit(UserSuccessState(
+            successMessage: response!.message!, userData: response.data!));
       }
     }catch(e){
       emit(UserErrorState(errorMessage: e.toString()));

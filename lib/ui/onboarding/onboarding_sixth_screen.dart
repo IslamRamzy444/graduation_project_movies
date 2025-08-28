@@ -5,6 +5,7 @@ import 'package:graduation_project_movies/ui/onboarding/cubit/onboarding_cubit.d
 
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../l10n/app_localizations.dart';
+
 import '../../utils/app_assets.dart';
 import '../widgets/custom_onboarding_item.dart';
 
