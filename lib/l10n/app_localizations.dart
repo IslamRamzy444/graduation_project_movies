@@ -433,6 +433,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Loading...'**
   String get loading;
+
+  /// No description provided for @updating_profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Profile'**
+  String get updating_profile;
+
+  /// No description provided for @profile_updated_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile Updated Successfully'**
+  String get profile_updated_successfully;
+
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
 }
 
 class _AppLocalizationsDelegate

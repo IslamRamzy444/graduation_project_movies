@@ -20,6 +20,7 @@ class CustomTextField extends StatelessWidget {
   String? obscuringCharacter;
   int? maxLines;
   Color? filledColor;
+  bool? enabled;
   CustomTextField({
     this.maxLines,
     this.obscuringCharacter,
@@ -36,11 +37,13 @@ class CustomTextField extends StatelessWidget {
     this.suffixIcon,
     this.validator,
     this.filledColor,
+    this.enabled
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: enabled,
       maxLines: maxLines ?? 1,
       decoration: InputDecoration(
         filled: true,

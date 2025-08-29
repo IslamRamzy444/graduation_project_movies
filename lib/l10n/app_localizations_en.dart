@@ -181,4 +181,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get loading => 'Loading...';
+
+  @override
+  String get updating_profile => 'Update Profile';
+
+  @override
+  String get profile_updated_successfully => 'Profile Updated Successfully';
+
+  @override
+  String get phone => 'Phone';
 }

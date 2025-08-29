@@ -125,19 +125,44 @@ class ApiManager {
   }
 
   static Future<UserResponse?> updateProfileData(
-      String credential, String email, int avatarId) async {
+      String credential,
+      String? email,
+      String? name,
+      String? phone,
+      int? avatarId
+      ) async {
     try {
       Uri url = Uri.https(ApiConstants.authBaseUrl, ApiEndPoints.profileApi);
-      var response = await http.patch(url,
+
+      // Create request body with only non-null values
+      Map<String, dynamic> requestBody = {};
+
+      if (email != null && email.isNotEmpty) {
+        requestBody["email"] = email;
+      }
+      if (name != null && name.isNotEmpty) {
+        requestBody["name"] = name;
+      }
+      if (phone != null && phone.isNotEmpty) {
+        requestBody["phone"] = phone;
+      }
+      if (avatarId != null) {
+        requestBody["avaterId"] = avatarId;
+      }
+
+      var response = await http.patch(
+          url,
           headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer $credential"
           },
-          body: jsonEncode({"email": email, "avaterId": avatarId}));
-      var body=response.body;
-      var json=jsonDecode(body);
+          body: jsonEncode(requestBody)
+      );
+
+      var body = response.body;
+      var json = jsonDecode(body);
       return UserResponse.fromJson(json);
-    }catch(e){
+    } catch (e) {
       throw e;
     }
   }
@@ -156,8 +181,7 @@ class ApiManager {
     }
   }
 
-  static Future<UserResponse?> resetPassword(
-      String credential, String oldPassword, String newPassword) async {
+  static Future<UserResponse?> resetPassword(String credential, String oldPassword, String newPassword) async {
     try {
       Uri url =
           Uri.https(ApiConstants.authBaseUrl, ApiEndPoints.resetPasswordApi);
