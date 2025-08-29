@@ -36,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
+    
     return Scaffold(
       body: BlocBuilder<MoviesViewModel, MoviesState>(
         bloc: _moviesViewModel,

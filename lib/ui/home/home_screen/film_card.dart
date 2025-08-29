@@ -14,6 +14,7 @@ class FilmCard extends StatelessWidget {
       required this.rating,
       this.isCategory = false});
 
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;

@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 //import 'package:graduation_project_movies/l10n/app_localizations.dart';
 import 'package:graduation_project_movies/ui/auth/register/cubit/register_view_model.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_Elevated_button.dart';
@@ -14,7 +16,9 @@ import 'package:graduation_project_movies/utils/app_styles.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../cubits/language_cubit/language_cubit.dart';
+
 import 'cubit/register_navigator.dart';
+
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -97,6 +101,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                 /// Form
                 Form(
                   key: viewModel.formKey,
+
                   child: Column(
                     children: [
                       CustomTextField(
@@ -110,11 +115,13 @@ class _RegisterScreenState extends State<RegisterScreen>
                         },
                         hintText: AppLocalizations.of(context)!.name,
                         prefixIcon: ImageIcon(
+
                           AssetImage(AppAssets.userNameIcon),
                           color: AppColors.whiteColor,
                         ),
                       ),
                       SizedBox(height: 0.02 * height),
+
                       CustomTextField(
                         controller: viewModel.emailController,
                         validator: (text) {
@@ -137,8 +144,10 @@ class _RegisterScreenState extends State<RegisterScreen>
                           AssetImage(AppAssets.emailIcon),
                           color: AppColors.whiteColor,
                         ),
+
                       ),
                       SizedBox(height: 0.02 * height),
+
                       CustomTextField(
                         controller: viewModel.passwordController,
                         validator: (text) {
@@ -157,6 +166,8 @@ class _RegisterScreenState extends State<RegisterScreen>
                           AssetImage(AppAssets.passwordIcon),
                           color: AppColors.whiteColor,
                         ),
+
+
                         obscureText: obscured1,
                         suffixIcon: InkWell(
                           onTap: () {
@@ -172,6 +183,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                         ),
                       ),
                       SizedBox(height: 0.02 * height),
+
                       CustomTextField(
                         controller: viewModel.rePasswordController,
                         validator: (text) {
@@ -183,8 +195,10 @@ class _RegisterScreenState extends State<RegisterScreen>
                             return AppLocalizations.of(context)!
                                 .short_password_error;
                           }
+
                           if (viewModel.passwordController.text.trim() !=
                               text.trim()) {
+
                             return AppLocalizations.of(context)!
                                 .mis_match_re_password;
                           }
@@ -225,6 +239,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                           AssetImage(AppAssets.phoneIcon),
                           color: AppColors.whiteColor,
                         ),
+
                       ),
                       SizedBox(height: 0.02 * height),
                       CustomElevatedButton(

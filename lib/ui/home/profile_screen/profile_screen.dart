@@ -33,6 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     viewModel.getProfile(widget.token!);
   }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -179,3 +180,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
 }
 
 class DummyClass {}
+

@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
     return BlocBuilder<LanguageCubit, Locale>(builder: (context, locale) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.loginScreenRouteName,
+        initialRoute: AppRoutes.homeScreenRouteName,
         routes: {
           AppRoutes.loginScreenRouteName: (context) => LoginScreen(),
           AppRoutes.introScreenRouteName: (context) => IntroScreen(),
