@@ -4,15 +4,16 @@ import 'package:graduation_project_movies/ui/auth/login/cubit/login_navigator.da
 import 'package:graduation_project_movies/ui/auth/login/cubit/login_states.dart';
 import 'package:graduation_project_movies/ui/auth/login/cubit/login_view_model.dart';
 import 'package:graduation_project_movies/utils/alert_dialog.dart';
-//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../cubits/language_cubit/language_cubit.dart';
-import '../../../l10n/app_localizations.dart';
+//import '../../../l10n/app_localizations.dart';
 import '../../../utils/app_assets.dart';
 import '../../../utils/app_styles.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+//import '../../../utils/dialog_utils.dart';
 import '../../widgets/custom_Elevated_button.dart';
 import '../../widgets/custom_text_form_field.dart';
 
@@ -26,7 +27,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
   bool isHidden = true;
   late LoginViewModel viewModel;
-
+  String? token;
   @override
   void initState() {
     viewModel = LoginViewModel();
@@ -143,16 +144,17 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                           ],
                         ),
                         BlocListener<LoginViewModel, LoginStates>(
-                          listener: (context, state) {
+                          listener: (context, state) async {
                             if (state is LoginLoadingState) {
                               showLoading(
                                   AppLocalizations.of(context)!.login_loading);
                             } else if (state is LoginErrorState) {
-                              showMessage(state.errorMessage);
+                              showMessage(state.error);
                             } else {
                               showSuccessDialog(
                                   AppLocalizations.of(context)!.login_succeeded,
                                   () => navigateToHomeScreen());
+                              token = await viewModel.getToken();
                             }
                           },
                           child: CustomElevatedButton(
@@ -230,6 +232,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                               AppLocalizations.of(context)!.login_succeeded,
                               () => navigateToHomeScreen(),
                             );
+                            token = await viewModel.getToken();
                           },
                         ),
                       ],
@@ -287,7 +290,8 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
 
   @override
   void navigateToHomeScreen() {
-    Navigator.pushReplacementNamed(context, AppRoutes.homeScreenRouteName);
+    Navigator.pushReplacementNamed(context, AppRoutes.homeScreenRouteName,
+        arguments: token);
   }
 
   @override

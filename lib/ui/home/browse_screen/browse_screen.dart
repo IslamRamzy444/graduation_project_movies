@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:graduation_project_movies/ui/home/home_screen/film_card.dart';
 import 'package:graduation_project_movies/utils/app_assets.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';

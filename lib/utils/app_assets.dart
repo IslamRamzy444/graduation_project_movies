@@ -27,7 +27,7 @@ class AppAssets {
   static const avatar7 = 'assets/images/avatar_7.png';
   static const avatar8 = 'assets/images/avatar_8.png';
   static const avatar9 = 'assets/images/avatar_9.png';
-  static const userNameIcon = "assets/images/user-name-icon.png";
+  static const userNameIcon="assets/images/user-name-icon.png";
   static const homeIcon = "assets/images/homeIcon.png";
   static const browseIcon = "assets/images/browseIcon.png";
   static const profileIcon = "assets/images/profileIcon.png";
@@ -35,8 +35,9 @@ class AppAssets {
   static const availableNowImage = "assets/images/availableNowImage.png";
   static const watchNowImage = "assets/images/watchNowImage.png";
   static const movieImage = "assets/images/movieImage.png";
-  static const exitIcon = "assets/images/exit_icon.png";
-  static const watchIcon = "assets/images/watch_list.png";
-  static const historyIcon = "assets/images/history.png";
-  static const emptyWatchList = "assets/images/Empty 1.png";
+  static const exitIcon = "assets/images/exitIcon.png";
+  static const historyIcon = "assets/images/historyIcon.png";
+  static const watchListIcon = "assets/images/watchListIcon.png";
+  static const emptyIcon = "assets/images/emptyIcon.png";
+
 }
