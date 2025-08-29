@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project_movies/models/movies_list_repsonse.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/cubit/category_states.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/cubit/categroy_view_model.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
 
 import '../../../utils/app_styles.dart';
-import 'cubit/categroy_view_model.dart';
 import 'film_card.dart';
 
 class CategoryItem extends StatefulWidget {

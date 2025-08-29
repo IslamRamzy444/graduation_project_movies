@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/home_Screen.dart';
+import 'package:graduation_project_movies/ui/home/profile_screen/cubit/profile_view_model.dart';
 import 'package:graduation_project_movies/ui/home/profile_screen/profile_screen.dart';
 import 'package:graduation_project_movies/ui/home/search_screen/search_screen.dart';
 import 'package:graduation_project_movies/utils/app_assets.dart';
@@ -17,7 +18,15 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int currentIndex = 0;
   String? token;
-
+  ProfileViewModel viewModel=ProfileViewModel();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      viewModel.getProfile(token!);
+    },);
+  }
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as String;
