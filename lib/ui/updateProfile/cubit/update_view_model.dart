@@ -94,4 +94,18 @@ class UpdateProfileViewModel {
       showMessage(e.toString());
     }
   }
+  void resetPassword(String credential,String oldPassword,String newPassword)async{
+    showLoading(AppLocalizations.of(context!)!.loading);
+    try{
+      var response=await ApiManager.resetPassword(credential, oldPassword, newPassword);
+      hideLoading();
+      showSuccessDialog(
+        response!.message!, 
+        ()=>Navigator.pop(context!)
+      );
+    }catch(e){
+      hideLoading();
+      showMessage(e.toString());
+    }
+  }
 }

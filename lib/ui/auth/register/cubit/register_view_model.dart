@@ -43,7 +43,7 @@ class RegisterViewModel extends Cubit<UserStates> {
           emit(UserSuccessState(
               successMessage: response!.message!, userData: response.data!));
           navigator.showSuccessDialog(response.message ?? "Success", () {
-            navigator.navigateToHomeScreen();
+            navigator.navigateToLoginScreen();
           });
         }
       } catch (e) {

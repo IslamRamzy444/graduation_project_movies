@@ -321,7 +321,7 @@ class _RegisterScreenState extends State<RegisterScreen>
 
   @override
   void navigateToLoginScreen() {
-    Navigator.pushNamed(context, AppRoutes.loginScreenRouteName);
+    Navigator.pop(context);
   }
 
   @override
