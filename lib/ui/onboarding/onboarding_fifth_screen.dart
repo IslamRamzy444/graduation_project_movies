@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project_movies/l10n/app_localizations.dart';
+//import 'package:graduation_project_movies/l10n/app_localizations.dart';
 import 'package:graduation_project_movies/ui/onboarding/cubit/onboarding_cubit.dart';
 
 

@@ -15,7 +15,7 @@ class CustomElevatedButton extends StatelessWidget {
   Widget? suffixIcon;
 
 
-  const CustomElevatedButton({
+  CustomElevatedButton({
     this.rowMainAxesAlignment = MainAxisAlignment.center,
     super.key,
     this.leadingIcon,

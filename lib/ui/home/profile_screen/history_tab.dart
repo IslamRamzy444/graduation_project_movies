@@ -9,7 +9,7 @@ class HistoryTab extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child: Image.asset(AppAssets.emptyWatchList, height: 124, width: 124),
+        child: Image.asset(AppAssets.watchListIcon, height: 124, width: 124),
       ),
     );
   }

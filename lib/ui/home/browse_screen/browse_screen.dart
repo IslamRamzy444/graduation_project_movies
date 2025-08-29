@@ -88,7 +88,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
           itemBuilder: (context, index) {
             return FilmCard(
               image: AppAssets.movieImage,
-              rating: "4.5",
+              rating: 4.5,
             );
           },
         ),
