@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project_movies/ui/home/home_screen/fake_film_card.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/film_card.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_text_form_field.dart';
 import 'package:graduation_project_movies/utils/app_assets.dart';
@@ -32,7 +33,7 @@ class SearchScreen extends StatelessWidget {
           ),
           itemCount: 10,
           itemBuilder: (context, index) {
-            return FilmCard(
+            return FakeFilmCard(
               image: AppAssets.movieImage,
               rating: 4.5,
             );
