@@ -8,7 +8,7 @@ class CustomElevatedButton extends StatelessWidget {
   Color? borderColor;
   TextStyle? buttonTextStyle;
   String buttonText;
-  VoidCallback onPressed;
+  VoidCallback? onPressed;
   Widget? leadingIcon;
   MainAxisAlignment rowMainAxesAlignment;
   Size? size;

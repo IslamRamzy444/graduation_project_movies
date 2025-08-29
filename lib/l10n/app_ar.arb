@@ -54,5 +54,8 @@
   "success": "نجاح",
   "failure": "فشل",
   "ok": "حسنًا",
-  "loading": "جارٍ التحميل..."
+  "loading": "جارٍ التحميل...",
+  "updating_profile": "تحديث الحساب",
+  "profile_updated_successfully": "تم تحديث الحساب بنجاح",
+  "phone": "الرقم"
 }

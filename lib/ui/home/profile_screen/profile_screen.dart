@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:graduation_project_movies/ui/home/profile_screen/cubit/profile_states.dart';
 import 'package:graduation_project_movies/ui/home/profile_screen/cubit/profile_view_model.dart';
-//import 'package:graduation_project_movies/l10n/app_localizations.dart';
+import 'package:graduation_project_movies/l10n/app_localizations.dart';
 //import 'package:graduation_project_movies/models/dummy_class.dart';
 import 'package:graduation_project_movies/ui/home/profile_screen/profile_screen_tab.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_Elevated_button.dart';
@@ -11,7 +11,9 @@ import 'package:graduation_project_movies/utils/app_assets.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
 
+import '../../../models/movies_list_repsonse.dart';
 import '../../../utils/app_styles.dart';
+import '../../updateProfile/update_profile_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   String? token;
@@ -108,11 +110,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomElevatedButton(
-                              buttonText:
-                                  AppLocalizations.of(context)!.edit_profile,
-                              onPressed: () {
-                                Navigator.pushNamed(context,
-                                    AppRoutes.updateProfileScreenRouteName);
+                              buttonText: AppLocalizations.of(context)!.edit_profile,
+                              onPressed: () async {
+                                // Navigate to update profile screen with ProfileViewModel instance
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => UpdateProfileScreen(
+                                      userData: state.userProfile,
+                                      token: widget.token!,
+                                      profileViewModel: viewModel, // Pass the viewModel instance
+                                    ),
+                                  ),
+                                );
+                                // No need for manual refresh here since UpdateProfileScreen handles it
                               },
                               size: Size(width * 0.64, height * 0.07),
                             ),

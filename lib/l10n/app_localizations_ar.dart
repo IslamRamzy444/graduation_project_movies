@@ -147,7 +147,6 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get empty_phone_error => 'يرجى إدخال رقم الهاتف';
 
-
   @override
   String get wish_list => 'قائمة الرغبات';
 
@@ -162,7 +161,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get exit => 'خروج';
-
 
   @override
   String get login_loading => 'جاري تسجيل الدخول...';
@@ -184,4 +182,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get loading => 'جارٍ التحميل...';
+
+  @override
+  String get updating_profile => 'تحديث الحساب';
+
+  @override
+  String get profile_updated_successfully => 'تم تحديث الحساب بنجاح';
+
+  @override
+  String get phone => 'الرقم';
 }
