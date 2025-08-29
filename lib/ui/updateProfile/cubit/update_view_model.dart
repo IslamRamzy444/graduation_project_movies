@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project_movies/api/api_manager.dart';
 import 'package:graduation_project_movies/utils/alert_dialog.dart';
 import 'package:graduation_project_movies/l10n/app_localizations.dart';
+import 'package:graduation_project_movies/utils/app_routes.dart';
 import '../../../cubits/avatar_cubit/avatar_cubit.dart';
 import '../../home/profile_screen/cubit/profile_view_model.dart';
 
@@ -77,6 +78,20 @@ class UpdateProfileViewModel {
     } catch (e) {
       hideLoading();
       showMessage('Error: ${e.toString()}');
+    }
+  }
+  void deleleteUser(String credential) async{
+    showLoading(AppLocalizations.of(context!)!.loading);
+    try{
+      var response=await ApiManager.deleteUser(credential);
+      hideLoading();
+      showSuccessDialog(
+        response!.message!, 
+       ()=>Navigator.pushReplacementNamed(context!, AppRoutes.loginScreenRouteName)
+      );
+    }catch(e){
+      hideLoading();
+      showMessage(e.toString());
     }
   }
 }

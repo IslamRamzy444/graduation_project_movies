@@ -182,7 +182,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   CustomElevatedButton(
                     buttonText: AppLocalizations.of(context)!.delete_account,
                     onPressed: () {
-                      /// TODO: delete account
+                      viewModel.deleleteUser(widget.token!);
                     },
                     buttonColor: AppColors.redColor,
                     borderColor: AppColors.redColor,
