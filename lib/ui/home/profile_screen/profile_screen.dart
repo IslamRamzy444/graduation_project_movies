@@ -11,7 +11,6 @@ import 'package:graduation_project_movies/utils/app_assets.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
 
-import '../../../models/movies_list_repsonse.dart';
 import '../../../utils/app_styles.dart';
 import '../../updateProfile/update_profile_screen.dart';
 
@@ -130,7 +129,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             CustomElevatedButton(
                               buttonText: AppLocalizations.of(context)!.exit,
                               buttonTextStyle: AppStyles.regular20White,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushReplacementNamed(context, AppRoutes.loginScreenRouteName);
+                              },
                               size: Size(width * 0.26, height * 0.07),
                               buttonColor: AppColors.redColor,
                               borderColor: AppColors.redColor,
