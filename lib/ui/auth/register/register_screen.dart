@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:graduation_project_movies/l10n/app_localizations.dart';
@@ -16,7 +15,6 @@ import 'package:graduation_project_movies/utils/app_styles.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../cubits/language_cubit/language_cubit.dart';
-
 import 'cubit/register_navigator.dart';
 
 
@@ -316,7 +314,10 @@ class _RegisterScreenState extends State<RegisterScreen>
 
   @override
   void navigateToHomeScreen() {
-    Navigator.pushReplacementNamed(context, AppRoutes.homeScreenRouteName);
+    //Navigator.pushReplacementNamed(context, AppRoutes.homeScreenRouteName);
+    Navigator.pushNamedAndRemoveUntil(
+        context, AppRoutes.homeScreenRouteName, (route) => false,
+        arguments: token);
   }
 
   @override
