@@ -316,8 +316,10 @@ class _RegisterScreenState extends State<RegisterScreen>
   void navigateToHomeScreen() {
     //Navigator.pushReplacementNamed(context, AppRoutes.homeScreenRouteName);
     Navigator.pushNamedAndRemoveUntil(
-        context, AppRoutes.homeScreenRouteName, (route) => false,
-        arguments: token);
+      context,
+      AppRoutes.homeScreenRouteName,
+      (route) => false,
+    );
   }
 
   @override
