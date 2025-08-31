@@ -228,11 +228,15 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
                                 .login_with_google_loading);
                             await Future.delayed(const Duration(seconds: 2));
                             hideLoading();
-                            showSuccessDialog(
-                              AppLocalizations.of(context)!.login_succeeded,
-                              () => navigateToHomeScreen(),
-                            );
                             token = await viewModel.getToken();
+                            if (token != null) {
+                              showSuccessDialog(
+                                AppLocalizations.of(context)!.login_succeeded,
+                                () => navigateToHomeScreen(),
+                              );
+                            } else {
+                              showMessage("Login failed: token is null");
+                            }
                           },
                         ),
                       ],
@@ -290,7 +294,10 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator {
 
   @override
   void navigateToHomeScreen() {
-    Navigator.pushReplacementNamed(context, AppRoutes.homeScreenRouteName,
+    // Navigator.pushReplacementNamed(context, AppRoutes.homeScreenRouteName,
+    //     arguments: token);
+    Navigator.pushNamedAndRemoveUntil(
+        context, AppRoutes.homeScreenRouteName, (route) => false,
         arguments: token);
   }
 
