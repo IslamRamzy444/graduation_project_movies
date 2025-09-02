@@ -39,5 +39,5 @@ class AppAssets {
   static const historyIcon = "assets/images/historyIcon.png";
   static const watchListIcon = "assets/images/watchListIcon.png";
   static const emptyIcon = "assets/images/emptyIcon.png";
-
+  static const String playIcon="assets/images/play-icon.png";
 }

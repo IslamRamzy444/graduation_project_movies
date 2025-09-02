@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/cubit/category_states.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/cubit/categroy_view_model.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
+import 'package:graduation_project_movies/utils/app_routes.dart';
 
 import '../../../utils/app_styles.dart';
 import 'film_card.dart';
@@ -60,10 +61,15 @@ class _CategoryItemState extends State<CategoryItem> {
                   height: height * 0.25,
                   child: ListView.separated(
                     itemBuilder: (context, index) {
-                      return FilmCard(
-                        isCategory: true,
-                        image: state.categoriesList![index].mediumCoverImage!,
-                        rating: state.categoriesList![index].rating,
+                      return InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context,AppRoutes.movieDetailsScreenRouteName,arguments: state.categoriesList![index]);
+                        },
+                        child: FilmCard(
+                          isCategory: true,
+                          image: state.categoriesList![index].mediumCoverImage!,
+                          rating: state.categoriesList![index].rating,
+                        ),
                       );
                     },
                     separatorBuilder: (context, index) {

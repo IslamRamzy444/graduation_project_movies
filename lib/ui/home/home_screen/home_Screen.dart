@@ -7,6 +7,7 @@ import 'package:graduation_project_movies/ui/home/home_screen/cubit/movies_view_
 import 'package:graduation_project_movies/ui/home/home_screen/film_card.dart';
 import 'package:graduation_project_movies/utils/app_assets.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
+import 'package:graduation_project_movies/utils/app_routes.dart';
 import 'package:graduation_project_movies/utils/app_styles.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -87,9 +88,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 items: state.moviesList?.map((i) {
                                   return Builder(
                                     builder: (BuildContext context) {
-                                      return FilmCard(
-                                        image: i.mediumCoverImage!,
-                                        rating: i.rating,
+                                      return InkWell(
+                                        onTap: () {
+                                          Navigator.pushNamed(context, AppRoutes.movieDetailsScreenRouteName,arguments: i);
+                                        },
+                                        child: FilmCard(
+                                          image: i.mediumCoverImage!,
+                                          rating: i.rating,
+                                        ),
                                       );
                                     },
                                   );
@@ -100,7 +106,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                        CategoryItem()
+                        CategoryItem(
+                          
+                        )
                       ],
                     ),
                   ),
