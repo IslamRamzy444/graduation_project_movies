@@ -90,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     builder: (BuildContext context) {
                                       return InkWell(
                                         onTap: () {
-                                          Navigator.pushNamed(context, AppRoutes.movieDetailsScreenRouteName,arguments: i);
+                                          Navigator.pushNamed(context, AppRoutes.movieDetailsScreenRouteName,arguments: i.id);
                                         },
                                         child: FilmCard(
                                           image: i.mediumCoverImage!,

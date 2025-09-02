@@ -63,7 +63,7 @@ class _CategoryItemState extends State<CategoryItem> {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context,AppRoutes.movieDetailsScreenRouteName,arguments: state.categoriesList![index]);
+                          Navigator.pushNamed(context,AppRoutes.movieDetailsScreenRouteName,arguments: state.categoriesList![index].id);
                         },
                         child: FilmCard(
                           isCategory: true,

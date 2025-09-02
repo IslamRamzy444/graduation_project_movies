@@ -60,7 +60,7 @@ class Movie {
   String? titleLong;
   String? slug;
   int? year;
-  int? rating;
+  double? rating;
   int? runtime;
   List<String>? genres;
   int? likeCount;
@@ -96,7 +96,7 @@ class Movie {
     titleLong = json["title_long"];
     slug = json["slug"];
     year = json["year"];
-    rating = json["rating"];
+    rating = json["rating"].toDouble();
     runtime = json["runtime"];
     genres = json["genres"] == null ? null : List<String>.from(json["genres"]);
     likeCount = json["like_count"];
