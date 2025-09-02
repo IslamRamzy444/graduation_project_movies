@@ -82,12 +82,14 @@ class WatchNowPoster extends StatelessWidget {
           Positioned(
             bottom: 0.02 * height,
             left: 0.1 * width,
-            child: Container(
+            child: SizedBox(
               width: 0.8 * width,
               child: Column(
+                mainAxisSize: MainAxisSize.min, // Add this line
+                crossAxisAlignment: CrossAxisAlignment.start, // Add this for better alignment
                 children: [
-                  Expanded(
-                      child: Text(title, style: AppStyles.bold24WhiteRoboto)),
+                  Text(title, style: AppStyles.bold24WhiteRoboto), // Remove Expanded
+                  SizedBox(height: 4), // Add spacing between title and year
                   Text(
                     year,
                     style: AppStyles.bold20GreyRoboto,
