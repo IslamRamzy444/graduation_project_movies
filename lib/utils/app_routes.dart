@@ -8,4 +8,6 @@ class AppRoutes {
   static const String registerScreenRouteName = "register-screen";
   static const String homeScreenRouteName = "home_screen";
   static const String searchScreenRouteName = "search_screen";
+  static const String movieDetailsScreenRouteName="movie_details";
+  static const String watchMovieScreenRouteName="watch_movie";
 }

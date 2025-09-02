@@ -6,6 +6,8 @@ import 'package:graduation_project_movies/ui/auth/login/forget_password.dart';
 import 'package:graduation_project_movies/ui/auth/login/login_screen.dart';
 import 'package:graduation_project_movies/ui/auth/register/register_screen.dart';
 import 'package:graduation_project_movies/ui/home/home.dart';
+import 'package:graduation_project_movies/ui/home/movie_details/movie_details_screen.dart';
+import 'package:graduation_project_movies/ui/home/movie_details/watch_movie/watch_movie_screen.dart';
 import 'package:graduation_project_movies/ui/onboarding/intro_screen.dart';
 import 'package:graduation_project_movies/ui/onboarding/onboarding_first_screen.dart';
 import 'package:graduation_project_movies/ui/onboarding/onboarding_second_screen.dart';
@@ -46,6 +48,8 @@ class MyApp extends StatelessWidget {
           AppRoutes.updateProfileScreenRouteName: (context) =>
               UpdateProfileScreen(),
           AppRoutes.registerScreenRouteName: (context) => RegisterScreen(),
+          AppRoutes.movieDetailsScreenRouteName:(context)=>MovieDetailsScreen(),
+          AppRoutes.watchMovieScreenRouteName:(context)=>WatchMovieScreen()
         },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
