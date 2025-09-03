@@ -167,7 +167,12 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                           childAspectRatio: 0.7,
                         ),
                         itemBuilder: (context, index) {
-                          return InkWell(
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushReplacementNamed(
+                                  AppRoutes.movieDetailsScreenRouteName,
+                                  arguments: movieSuggestionsList[index].id);
+                            },
                             child: SuggestionCard(
                               backgroundImageUrl:
                                   movieSuggestionsList[index].mediumCoverImage!,
