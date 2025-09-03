@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_movies/models/movies_list_repsonse.dart';
+import 'package:graduation_project_movies/models/movie_suggestion_response.dart';
 import 'package:graduation_project_movies/ui/home/movie_details/widgets/movie_info_card.dart';
+import 'package:graduation_project_movies/ui/home/movie_details/widgets/suggestion_card.dart';
 import 'package:graduation_project_movies/ui/home/movie_details/widgets/watch_now_poster.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_Elevated_button.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
@@ -21,6 +22,7 @@ class MovieDetailsScreen extends StatefulWidget {
 class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   late int movieId;
   MovieDetailsResponse? movieDetails;
+  MovieSuggestionResponse? movieSuggestionResponse;
   String? errorMessage;
 
   @override
@@ -29,6 +31,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
     Future.delayed(Duration.zero, () {
       movieId = ModalRoute.of(context)!.settings.arguments as int;
       _loadMovieDetails();
+      _loadSuggestionMovies();
     });
   }
 
@@ -66,6 +69,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                     errorMessage = null;
                   });
                   _loadMovieDetails();
+                  _loadSuggestionMovies();
                 },
                 child: Text("Retry"),
               ),
@@ -77,6 +81,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
 
     // Check for null movie data
     final movie = movieDetails?.data?.movie;
+    final movieSuggestionsList = movieSuggestionResponse?.data?.movies;
     if (movie == null) {
       return Scaffold(
         appBar: AppBar(
@@ -88,7 +93,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
       );
     }
 
-    print("this is the movie title ${movie.title}\n this is the movie description ${movie.descriptionFull}\n this is cast ${movie.cast}");
+    print(
+        "this is the movie title ${movie.title}\n this is the movie description ${movie.descriptionFull}\n this is cast ${movie.cast}");
 
     return Scaffold(
       body: SafeArea(
@@ -100,7 +106,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                 image: movie.largeCoverImage ?? '',
                 title: movie.title ?? 'Unknown Title',
                 year: movie.year?.toString() ?? 'Unknown Year',
-                addFav: (){},
+                addFav: () {},
                 navBack: () {
                   Navigator.pop(context);
                 },
@@ -128,16 +134,13 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                   children: [
                     MovieInfoCard(
                         iconData: Icons.favorite,
-                        info: movie.likeCount?.toString() ?? "0"
-                    ),
+                        info: movie.likeCount?.toString() ?? "0"),
                     MovieInfoCard(
                         iconData: Icons.access_time_filled,
-                        info: "${movie.runtime ?? 0} min"
-                    ),
+                        info: "${movie.runtime ?? 0} min"),
                     MovieInfoCard(
                         iconData: Icons.star,
-                        info: movie.rating?.toStringAsFixed(1) ?? "N/A"
-                    )
+                        info: movie.rating?.toStringAsFixed(1) ?? "N/A")
                   ],
                 ),
               ),
@@ -147,9 +150,43 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (movie.descriptionFull != null && movie.descriptionFull!.isNotEmpty) ...[
+                    if (movieSuggestionsList != null &&
+                        movieSuggestionsList.isNotEmpty) ...[
                       Text(
-                        "Description",
+                        ' Similar',
+                        style: AppStyles.bold24WhiteRoboto,
+                      ),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                      GridView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.7,
+                        ),
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushReplacementNamed(
+                                  AppRoutes.movieDetailsScreenRouteName,
+                                  arguments: movieSuggestionsList[index].id);
+                            },
+                            child: SuggestionCard(
+                              backgroundImageUrl:
+                                  movieSuggestionsList[index].mediumCoverImage!,
+                              rating: movieSuggestionsList[index].rating!,
+                            ),
+                          );
+                        },
+                        itemCount: movieSuggestionsList.length,
+                      ),
+                    ],
+                    if (movie.descriptionFull != null &&
+                        movie.descriptionFull!.isNotEmpty) ...[
+                      Text(
+                        "Summary",
                         style: AppStyles.bold20WhiteRoboto,
                       ),
                       SizedBox(height: 8),
@@ -167,16 +204,20 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                       SizedBox(height: 8),
                       Wrap(
                         spacing: 8,
-                        children: movie.genres!.map((genre) =>
-                            Chip(
-                              label: Text(genre,style: AppStyles.regular16WhiteRoboto,),
-                              backgroundColor: AppColors.darkGreyColor,
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(color: AppColors.transparentColor),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            )
-                        ).toList(),
+                        children: movie.genres!
+                            .map((genre) => Chip(
+                                  label: Text(
+                                    genre,
+                                    style: AppStyles.regular16WhiteRoboto,
+                                  ),
+                                  backgroundColor: AppColors.darkGreyColor,
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        color: AppColors.transparentColor),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ))
+                            .toList(),
                       ),
                       SizedBox(height: 16),
                     ],
@@ -201,9 +242,11 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                 children: [
                                   CircleAvatar(
                                     radius: 30,
-                                    backgroundImage: castMember.urlSmallImage != null
-                                        ? NetworkImage(castMember.urlSmallImage!)
-                                        : null,
+                                    backgroundImage:
+                                        castMember.urlSmallImage != null
+                                            ? NetworkImage(
+                                                castMember.urlSmallImage!)
+                                            : null,
                                     child: castMember.urlSmallImage == null
                                         ? Icon(Icons.person)
                                         : null,
@@ -235,11 +278,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
 
   void _watchMovie(String? movieUrl) {
     if (movieUrl != null && movieUrl.isNotEmpty) {
-      Navigator.pushNamed(
-          context,
-          AppRoutes.watchMovieScreenRouteName,
-          arguments: movieUrl
-      );
+      Navigator.pushNamed(context, AppRoutes.watchMovieScreenRouteName,
+          arguments: movieUrl);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -254,9 +294,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
     try {
       // Show loading dialog
       DialogUtils.showLoading(
-          context: context,
-          loadingText: "Loading movie details..."
-      );
+          context: context, loadingText: "Loading movie details...");
 
       movieDetails = await ApiManager.getMovieDetails(movieId: movieId);
 
@@ -268,6 +306,27 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
       });
     } catch (e) {
       print("Error loading movie details: $e");
+
+      // Hide loading dialog
+      DialogUtils.hideLoading(context: context);
+
+      setState(() {
+        errorMessage = e.toString();
+      });
+    }
+  }
+
+  Future<void> _loadSuggestionMovies() async {
+    try {
+      // Show loading dialog
+      movieSuggestionResponse =
+          await ApiManager.getMovieSuggestion(movieId: movieId);
+
+      setState(() {
+        errorMessage = null;
+      });
+    } catch (e) {
+      print("Error loading suggestion movies: $e");
 
       // Hide loading dialog
       DialogUtils.hideLoading(context: context);
