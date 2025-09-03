@@ -2,6 +2,7 @@ import 'dart:convert';
 
 
 import 'package:graduation_project_movies/api/api_constants.dart';
+import 'package:graduation_project_movies/models/movie_details_response.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/movies_list_repsonse.dart';
@@ -12,6 +13,29 @@ import 'package:graduation_project_movies/api/api_end_points.dart';
 import 'package:graduation_project_movies/models/user_response.dart';
 
 class ApiManager {
+  static Future<MovieDetailsResponse?> getMovieDetails({required int movieId}) async{
+    Uri url = Uri.https(
+      ApiConstants.baseUrl,
+      ApiConstants.movieDetailsEndPoint,
+      {
+        "movie_id" : movieId.toString(),
+        "with_images" : "true",
+        "with_cast" : "true"
+      }
+    );
+    try{
+      var response = await http.get(url);
+      if(response.statusCode == 200){
+        var responseBody = response.body;
+        var json = jsonDecode(responseBody);
+        return MovieDetailsResponse.fromJson(json);
+      }else{
+        throw Exception("Failed to load movie details: ${response.statusCode}");
+      }
+    } catch (e){
+      rethrow;
+    }
+  }
   static Future<MoviesListResponse?> getAllMovies() async {
     Uri url = Uri.https(
       ApiConstants.baseUrl,
