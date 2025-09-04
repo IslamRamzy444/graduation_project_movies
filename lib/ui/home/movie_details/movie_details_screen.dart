@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_movies/models/movie_suggestion_response.dart';
 import 'package:graduation_project_movies/ui/home/movie_details/widgets/movie_info_card.dart';
+import 'package:graduation_project_movies/ui/home/movie_details/widgets/screen_shot_card.dart';
 import 'package:graduation_project_movies/ui/home/movie_details/widgets/suggestion_card.dart';
 import 'package:graduation_project_movies/ui/home/movie_details/widgets/watch_now_poster.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_Elevated_button.dart';
@@ -58,7 +59,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
               SizedBox(height: 16),
               Text(
                 "Error loading movie details",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: AppStyles.bold20WhiteRoboto,
               ),
               SizedBox(height: 8),
               Text(errorMessage!),
@@ -82,13 +83,16 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
     // Check for null movie data
     final movie = movieDetails?.data?.movie;
     final movieSuggestionsList = movieSuggestionResponse?.data?.movies;
+    final String screenShot1=movie?.mediumScreenshotImage1??'';
+    final String screenShot2=movie?.mediumScreenshotImage2??'';
+    final String screenShot3=movie?.mediumScreenshotImage3??'';
     if (movie == null) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text("Movie Details"),
+          title:  Text("Movie Details",style: AppStyles.regular16PrimaryRoboto,),
         ),
-        body: const Center(
-          child: Text("No movie data available"),
+        body:  Center(
+          child: Text("No movie data available",style: AppStyles.regular16PrimaryRoboto,),
         ),
       );
     }
@@ -182,6 +186,14 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         },
                         itemCount: movieSuggestionsList.length,
                       ),
+                      SizedBox(height:0.02*height),
+                      Text("Screen Shots",style: AppStyles.bold24WhiteRoboto,),
+                      SizedBox(height: 0.02*height,),
+                      ScreenShotCard(imageUrl: screenShot1),
+                      SizedBox(height: 0.01*height,),
+                      ScreenShotCard(imageUrl: screenShot2),
+                      SizedBox(height: 0.01*height,),
+                      ScreenShotCard(imageUrl: screenShot3)
                     ],
                     if (movie.descriptionFull != null &&
                         movie.descriptionFull!.isNotEmpty) ...[
