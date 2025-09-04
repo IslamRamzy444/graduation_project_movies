@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_movies/models/movie_suggestion_response.dart';
+import 'package:graduation_project_movies/ui/home/movie_details/widgets/cast_section.dart';
 import 'package:graduation_project_movies/ui/home/movie_details/widgets/movie_info_card.dart';
 import 'package:graduation_project_movies/ui/home/movie_details/widgets/screen_shot_card.dart';
 import 'package:graduation_project_movies/ui/home/movie_details/widgets/suggestion_card.dart';
@@ -83,16 +84,22 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
     // Check for null movie data
     final movie = movieDetails?.data?.movie;
     final movieSuggestionsList = movieSuggestionResponse?.data?.movies;
-    final String screenShot1=movie?.mediumScreenshotImage1??'';
-    final String screenShot2=movie?.mediumScreenshotImage2??'';
-    final String screenShot3=movie?.mediumScreenshotImage3??'';
+    final String screenShot1 = movie?.mediumScreenshotImage1 ?? '';
+    final String screenShot2 = movie?.mediumScreenshotImage2 ?? '';
+    final String screenShot3 = movie?.mediumScreenshotImage3 ?? '';
     if (movie == null) {
       return Scaffold(
         appBar: AppBar(
-          title:  Text("Movie Details",style: AppStyles.regular16PrimaryRoboto,),
+          title: Text(
+            "Movie Details",
+            style: AppStyles.regular16PrimaryRoboto,
+          ),
         ),
-        body:  Center(
-          child: Text("No movie data available",style: AppStyles.regular16PrimaryRoboto,),
+        body: Center(
+          child: Text(
+            "No movie data available",
+            style: AppStyles.regular16PrimaryRoboto,
+          ),
         ),
       );
     }
@@ -186,13 +193,22 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         },
                         itemCount: movieSuggestionsList.length,
                       ),
-                      SizedBox(height:0.02*height),
-                      Text("Screen Shots",style: AppStyles.bold24WhiteRoboto,),
-                      SizedBox(height: 0.02*height,),
+                      SizedBox(height: 0.02 * height),
+                      Text(
+                        "Screen Shots",
+                        style: AppStyles.bold24WhiteRoboto,
+                      ),
+                      SizedBox(
+                        height: 0.02 * height,
+                      ),
                       ScreenShotCard(imageUrl: screenShot1),
-                      SizedBox(height: 0.01*height,),
+                      SizedBox(
+                        height: 0.01 * height,
+                      ),
                       ScreenShotCard(imageUrl: screenShot2),
-                      SizedBox(height: 0.01*height,),
+                      SizedBox(
+                        height: 0.01 * height,
+                      ),
                       ScreenShotCard(imageUrl: screenShot3)
                     ],
                     if (movie.descriptionFull != null &&
@@ -208,6 +224,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                       ),
                       SizedBox(height: 16),
                     ],
+                    if (movie.cast != null) CastSection(castList: movie.cast!),
+                    const SizedBox(height: 16),
                     if (movie.genres != null && movie.genres!.isNotEmpty) ...[
                       Text(
                         "Genres",
@@ -233,51 +251,51 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                       ),
                       SizedBox(height: 16),
                     ],
-                    if (movie.cast != null && movie.cast!.isNotEmpty) ...[
-                      Text(
-                        "Cast",
-                        style: AppStyles.bold20WhiteRoboto,
-                      ),
-                      SizedBox(height: 8),
-                      //this is picture for cast
-                      SizedBox(
-                        height: 120,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: movie.cast!.length,
-                          itemBuilder: (context, index) {
-                            final castMember = movie.cast![index];
-                            return Container(
-                              width: 80,
-                              margin: EdgeInsets.only(right: 12),
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 30,
-                                    backgroundImage:
-                                        castMember.urlSmallImage != null
-                                            ? NetworkImage(
-                                                castMember.urlSmallImage!)
-                                            : null,
-                                    child: castMember.urlSmallImage == null
-                                        ? Icon(Icons.person)
-                                        : null,
-                                  ),
-                                  SizedBox(height: 8),
-                                  Text(
-                                    castMember.name ?? 'Unknown',
-                                    style: TextStyle(fontSize: 12),
-                                    textAlign: TextAlign.center,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
+                    // if (movie.cast != null && movie.cast!.isNotEmpty) ...[
+                    //   Text(
+                    //     "Cast",
+                    //     style: AppStyles.bold20WhiteRoboto,
+                    //   ),
+                    //   SizedBox(height: 8),
+                    //   //this is picture for cast
+                    //   SizedBox(
+                    //     height: 120,
+                    //     child: ListView.builder(
+                    //       scrollDirection: Axis.horizontal,
+                    //       itemCount: movie.cast!.length,
+                    //       itemBuilder: (context, index) {
+                    //         final castMember = movie.cast![index];
+                    //         return Container(
+                    //           width: 80,
+                    //           margin: EdgeInsets.only(right: 12),
+                    //           child: Column(
+                    //             children: [
+                    //               CircleAvatar(
+                    //                 radius: 30,
+                    //                 backgroundImage:
+                    //                     castMember.urlSmallImage != null
+                    //                         ? NetworkImage(
+                    //                             castMember.urlSmallImage!)
+                    //                         : null,
+                    //                 child: castMember.urlSmallImage == null
+                    //                     ? Icon(Icons.person)
+                    //                     : null,
+                    //               ),
+                    //               SizedBox(height: 8),
+                    //               Text(
+                    //                 castMember.name ?? 'Unknown',
+                    //                 style: TextStyle(fontSize: 12),
+                    //                 textAlign: TextAlign.center,
+                    //                 maxLines: 2,
+                    //                 overflow: TextOverflow.ellipsis,
+                    //               ),
+                    //             ],
+                    //           ),
+                    //         );
+                    //       },
+                    //     ),
+                    //   ),
+                    // ],
                   ],
                 ),
               ),
