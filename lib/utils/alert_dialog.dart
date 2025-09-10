@@ -15,9 +15,11 @@ class DialogUtils {
         content: Row(
           children: [
             CircularProgressIndicator(color: AppColors.primaryColor),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(loadingText, style: AppStyles.semiBold20Primary),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(loadingText, style: AppStyles.semiBold20Primary),
+              ),
             ),
           ],
         ),
