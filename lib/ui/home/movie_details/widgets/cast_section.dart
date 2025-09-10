@@ -42,11 +42,18 @@ class CastSection extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
-                        cast.urlSmallImage ??
-                            "https://via.placeholder.com/80x80?text=No+Image",
+                        cast.urlSmallImage ?? "",
                         width: 70,
                         height: 70,
                         fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset(
+                            "assets/images/no_image.png",
+                            width: 70,
+                            height: 70,
+                            fit: BoxFit.cover,
+                          );
+                        },
                       ),
                     ),
                     SizedBox(width: width * 0.03),
@@ -55,12 +62,14 @@ class CastSection extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Name : ${cast.name}" ?? "Unknown",
+                            overflow: TextOverflow.ellipsis,
+                            "Name : ${cast.name ?? 'Unknown'}",
                             style: AppStyles.regular18WhiteRoboto,
                           ),
                           SizedBox(height: height * 0.01),
                           Text(
-                            'Character : ${cast.characterName}' ?? "",
+                            overflow: TextOverflow.ellipsis,
+                            "Character : ${cast.characterName} ?? '' ",
                             style: AppStyles.regular18WhiteRoboto,
                           ),
                         ],

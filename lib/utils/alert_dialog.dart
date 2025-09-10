@@ -16,10 +16,10 @@ class DialogUtils {
           children: [
             CircularProgressIndicator(color: AppColors.primaryColor),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(loadingText, style: AppStyles.semiBold20Primary),
-              ),
+              child: Text(
+                  overflow: TextOverflow.ellipsis,
+                  loadingText,
+                  style: AppStyles.semiBold20Primary),
             ),
           ],
         ),
@@ -52,8 +52,7 @@ class DialogUtils {
             // }
             posAction?.call();
           },
-          child: Expanded(
-              child: Text(postActionName, style: AppStyles.semiBold20Primary)),
+          child: Text(postActionName, style: AppStyles.semiBold20Primary),
         ),
       );
     }
@@ -67,8 +66,7 @@ class DialogUtils {
             // }
             negAction?.call();
           },
-          child: Expanded(
-              child: Text(negActionName, style: AppStyles.semiBold20Primary)),
+          child: Text(negActionName, style: AppStyles.semiBold20Primary),
         ),
       );
     }
