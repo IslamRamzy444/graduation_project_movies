@@ -5,6 +5,7 @@ import 'package:graduation_project_movies/ui/home/home_screen/category_item.dart
 import 'package:graduation_project_movies/ui/home/home_screen/cubit/movies_states.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/cubit/movies_view_model.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/film_card.dart';
+import 'package:graduation_project_movies/ui/home/profile_screen/history_manager/history_manager.dart';
 import 'package:graduation_project_movies/utils/app_assets.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
@@ -90,6 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     builder: (BuildContext context) {
                                       return InkWell(
                                         onTap: () {
+                                          HistoryManager.saveMovie(i);
                                           Navigator.pushNamed(context, AppRoutes.movieDetailsScreenRouteName,arguments: i.id);
                                         },
                                         child: FilmCard(

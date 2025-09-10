@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_movies/models/movies_list_repsonse.dart';
+import 'package:graduation_project_movies/ui/home/home_screen/film_card.dart';
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:graduation_project_movies/ui/home/profile_screen/cubit/profile_states.dart';
 import 'package:graduation_project_movies/ui/home/profile_screen/cubit/profile_view_model.dart';
 import 'package:graduation_project_movies/l10n/app_localizations.dart';
+import 'package:graduation_project_movies/ui/home/profile_screen/history_manager/history_manager.dart';
 //import 'package:graduation_project_movies/models/dummy_class.dart';
 import 'package:graduation_project_movies/ui/home/profile_screen/profile_screen_tab.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_Elevated_button.dart';
@@ -27,12 +30,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   //this class will be filled with the history and watch list then from the api
   List<DummyClass> movieList = [];
+  List<Movies> historyList = [];
   ProfileViewModel viewModel = ProfileViewModel();
+  void _loadHistory(){
+    setState(() {
+      historyList=HistoryManager.getMovies();
+    });
+  }
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     viewModel.getProfile(widget.token!);
+    _loadHistory();
   }
 
   @override
@@ -170,15 +180,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ],
                     ),
                   ),
-                  Container(
-                    child: movieList.isEmpty
-                        ? Image.asset(AppAssets.emptyIcon)
-                        : ListView.builder(
-                            itemBuilder: (context, index) {
-                              return null;
-                            },
-                            itemCount: movieList.length,
-                          ),
+                  Expanded(
+                    child: watchHistory?
+                    _buildWatchList():
+                    _buildHistoryList()
                   )
                 ],
               );
@@ -188,6 +193,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  }
+  Widget _buildHistoryList(){
+    if(historyList.isEmpty){
+      return Center(child: Image.asset(AppAssets.emptyIcon),);
+    }else{
+      return GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 12,
+          childAspectRatio: 0.7,
+        ), 
+        itemBuilder: (context, index) {
+          final movie=historyList[index];
+          return FilmCard(
+            image: movie.mediumCoverImage??'', 
+            rating: movie.rating
+          );
+        },
+        itemCount: historyList.length,
+      );
+    }
+  }
+  Widget _buildWatchList(){
+    return Center(child: Image.asset(AppAssets.emptyIcon));
   }
 }
 
