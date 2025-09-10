@@ -50,7 +50,8 @@ class DialogUtils {
             // }
             posAction?.call();
           },
-          child: Text(postActionName, style: AppStyles.semiBold20Primary),
+          child: Expanded(
+              child: Text(postActionName, style: AppStyles.semiBold20Primary)),
         ),
       );
     }
@@ -64,7 +65,8 @@ class DialogUtils {
             // }
             negAction?.call();
           },
-          child: Text(negActionName, style: AppStyles.semiBold20Primary),
+          child: Expanded(
+              child: Text(negActionName, style: AppStyles.semiBold20Primary)),
         ),
       );
     }
