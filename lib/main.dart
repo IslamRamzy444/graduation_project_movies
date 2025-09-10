@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,12 +10,15 @@ import 'package:graduation_project_movies/ui/auth/register/register_screen.dart'
 import 'package:graduation_project_movies/ui/home/home.dart';
 import 'package:graduation_project_movies/ui/home/movie_details/movie_details_screen.dart';
 import 'package:graduation_project_movies/ui/home/movie_details/watch_movie/watch_movie_screen.dart';
+import 'package:graduation_project_movies/ui/home/profile_screen/history_manager/history_manager.dart';
 import 'package:graduation_project_movies/ui/onboarding/intro_screen.dart';
 import 'package:graduation_project_movies/ui/onboarding/onboarding_first_screen.dart';
 import 'package:graduation_project_movies/ui/onboarding/onboarding_second_screen.dart';
 import 'package:graduation_project_movies/ui/updateProfile/update_profile_screen.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
 import 'package:graduation_project_movies/utils/app_theme.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'cubits/language_cubit/language_cubit.dart';
 
@@ -21,7 +26,11 @@ import 'l10n/app_localizations.dart';
 
 // import 'l10n/app_localizations.dart';
 
-void main() {
+void main()async{
+  WidgetsFlutterBinding.ensureInitialized();
+  final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDocumentsDir.path);
+  await HistoryManager.init();
   runApp(
       BlocProvider(create: (context) => LanguageCubit(), child: const MyApp()));
 }

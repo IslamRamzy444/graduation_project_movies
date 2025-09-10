@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/cubit/category_states.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/cubit/categroy_view_model.dart';
+import 'package:graduation_project_movies/ui/home/profile_screen/history_manager/history_manager.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
 
@@ -63,6 +64,7 @@ class _CategoryItemState extends State<CategoryItem> {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
+                          HistoryManager.saveMovie(state.categoriesList![index]);
                           Navigator.pushNamed(context,AppRoutes.movieDetailsScreenRouteName,arguments: state.categoriesList![index].id);
                         },
                         child: FilmCard(
