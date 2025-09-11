@@ -132,7 +132,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                 isFavorite: isFavorite,
                 addFav: _toggleFavorite,
                 navBack: () {
-                  Navigator.pop(context);
+                  Navigator.pop(context, true);
                 },
                 play: () {
                   _watchMovie(movie.url);
