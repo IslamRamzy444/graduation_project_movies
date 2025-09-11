@@ -9,6 +9,7 @@ import 'package:graduation_project_movies/ui/widgets/custom_Elevated_button.dart
 import 'package:graduation_project_movies/utils/app_colors.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
 import 'package:graduation_project_movies/utils/app_styles.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../api/api_manager.dart';
 import '../../../models/movie_details_response.dart';
@@ -23,6 +24,8 @@ class MovieDetailsScreen extends StatefulWidget {
 
 class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   late int movieId;
+  bool isFavorite = false;
+  late String? token;
   MovieDetailsResponse? movieDetails;
   MovieSuggestionResponse? movieSuggestionResponse;
   String? errorMessage;
@@ -30,10 +33,19 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   @override
   void initState() {
     super.initState();
+    _init();
+  }
+
+  Future<void> _init() async {
+    final prefs = await SharedPreferences.getInstance();
+    token = prefs.getString("token");
     Future.delayed(Duration.zero, () {
       movieId = ModalRoute.of(context)!.settings.arguments as int;
       _loadMovieDetails();
       _loadSuggestionMovies();
+      if (token != null) {
+        _checkIfFavorite();
+      }
     });
   }
 
@@ -117,7 +129,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                 image: movie.largeCoverImage ?? '',
                 title: movie.title ?? 'Unknown Title',
                 year: movie.year?.toString() ?? 'Unknown Year',
-                addFav: () {},
+                isFavorite: isFavorite,
+                addFav: _toggleFavorite,
                 navBack: () {
                   Navigator.pop(context);
                 },
@@ -125,6 +138,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                   _watchMovie(movie.url);
                 },
               ),
+
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.04),
                 child: CustomElevatedButton(
@@ -364,6 +378,128 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
       setState(() {
         errorMessage = e.toString();
       });
+    }
+  }
+
+  Future<void> addToFavorite() async {
+    if (token == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("You must login first"),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    await ApiManager.addMovieToFavorites(
+      token: token!,
+      movieId: movieDetails!.data!.movie!.id!,
+      name: movieDetails!.data!.movie!.title!,
+      rating: movieDetails!.data!.movie!.rating!,
+      imageURL: movieDetails!.data!.movie!.url!,
+      year: movieDetails!.data!.movie!.year!,
+    );
+  }
+
+  Future<void> _checkFavoriteStatus() async {
+    try {
+      final response = await ApiManager.checkIfMovieIsFavorite(
+        token: token!,
+        movieId: movieId,
+      );
+
+      setState(() {
+        isFavorite = response?.data ?? false;
+      });
+    } catch (e) {
+      print("Error checking favorite status: $e");
+    }
+  }
+
+  Future<void> _removeFromFavorites() async {
+    try {
+      final response = await ApiManager.removeMovieFromFavorites(
+        token: token!,
+        movieId: movieId,
+      );
+      print("Removed from favorites: ${response.message}");
+      setState(() {
+        isFavorite = false;
+      });
+    } catch (e) {
+      print("Error removing favorite: $e");
+    }
+  }
+
+  Future<void> _toggleFavorite() async {
+    if (token == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("You must login first"),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    try {
+      if (isFavorite) {
+        final response = await ApiManager.removeMovieFromFavorites(
+          token: token!,
+          movieId: movieId,
+        );
+        setState(() {
+          isFavorite = false;
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response.message ?? "Removed from favorites ❌"),
+            backgroundColor: Colors.orange,
+          ),
+        );
+      } else {
+        final response = await ApiManager.addMovieToFavorites(
+          token: token!,
+          movieId: movieDetails!.data!.movie!.id!,
+          name: movieDetails!.data!.movie!.title!,
+          rating: movieDetails!.data!.movie!.rating!,
+          imageURL: movieDetails!.data!.movie!.largeCoverImage!,
+          year: movieDetails!.data!.movie!.year!,
+        );
+        setState(() {
+          isFavorite = true;
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(response?.message ?? "Added to favorites ✅"),
+            backgroundColor: Colors.green,
+          ),
+        );
+      }
+    } catch (e) {
+      print("Error toggling favorite: $e");
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Something went wrong, please try again"),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
+  Future<void> _checkIfFavorite() async {
+    try {
+      final response = await ApiManager.getFavorites(token: token!);
+      final favorites = response?.data;
+
+      setState(() {
+        isFavorite = favorites!.any((movie) => movie.movieId == movieId);
+      });
+    } catch (e) {
+      print("Error fetching favorites: $e");
     }
   }
 }
