@@ -5,6 +5,7 @@ import 'package:graduation_project_movies/ui/home/movie_details/widgets/movie_in
 import 'package:graduation_project_movies/ui/home/movie_details/widgets/screen_shot_card.dart';
 import 'package:graduation_project_movies/ui/home/movie_details/widgets/suggestion_card.dart';
 import 'package:graduation_project_movies/ui/home/movie_details/widgets/watch_now_poster.dart';
+import 'package:graduation_project_movies/ui/home/profile_screen/history_manager/history_manager.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_Elevated_button.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
 import 'package:graduation_project_movies/utils/app_routes.dart';
@@ -194,6 +195,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
+                              HistoryManager.saveMovie(movieSuggestionsList[index]);
                               Navigator.of(context).pushReplacementNamed(
                                   AppRoutes.movieDetailsScreenRouteName,
                                   arguments: movieSuggestionsList[index].id);
