@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/film_card.dart';
+import 'package:graduation_project_movies/ui/home/profile_screen/history_manager/history_manager.dart';
 import 'package:graduation_project_movies/utils/app_assets.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
 import '../../../utils/app_routes.dart';
@@ -8,7 +9,8 @@ import 'cubit/browse_cubit.dart';
 import 'cubit/browse_states.dart';
 
 class BrowseScreen extends StatefulWidget {
-  const BrowseScreen({super.key});
+  final String? initialGenre;
+  const BrowseScreen({super.key,this.initialGenre});
 
   @override
   State<BrowseScreen> createState() => _BrowseScreenState();
@@ -37,7 +39,8 @@ class _BrowseScreenState extends State<BrowseScreen> {
     _scrollController.addListener(_onScroll);
 
     // Load initial data
-    _browseCubit.fetchMoviesByCategory(categories[0]);
+    final genre=widget.initialGenre??categories[0];
+    _browseCubit.fetchMoviesByCategory(genre);
   }
 
   void _onScroll() {
@@ -183,6 +186,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
                               final movie = state.movies[index];
                               return InkWell(
                                 onTap: (){
+                                  HistoryManager.saveMovie(movie);
                                   //navigate to movie details screen
                                   Navigator.pushNamed(context, AppRoutes.movieDetailsScreenRouteName, arguments: movie.id);
                                 },

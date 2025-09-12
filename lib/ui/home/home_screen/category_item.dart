@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_movies/ui/home/browse_screen/browse_screen.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/cubit/category_states.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/cubit/categroy_view_model.dart';
 import 'package:graduation_project_movies/ui/home/profile_screen/history_manager/history_manager.dart';
@@ -48,6 +49,7 @@ class _CategoryItemState extends State<CategoryItem> {
                     InkWell(
                         onTap: () {
                           ///to do will navigate to screen of all category
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => BrowseScreen(initialGenre: categoriesViewModel.currentGenre,),));
                         },
                         child: Text(
                           "See More→",
