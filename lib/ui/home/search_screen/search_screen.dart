@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/fake_film_card.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/film_card.dart';
+import 'package:graduation_project_movies/ui/home/profile_screen/history_manager/history_manager.dart';
 import 'package:graduation_project_movies/ui/home/search_screen/cubit/search_states.dart';
 import 'package:graduation_project_movies/ui/home/search_screen/search_screen_view_model.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_text_form_field.dart';
 import 'package:graduation_project_movies/utils/app_assets.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
+import 'package:graduation_project_movies/utils/app_routes.dart';
 
 class SearchScreen extends StatefulWidget {
   SearchScreen({super.key});
@@ -107,9 +109,15 @@ class _SearchScreenState extends State<SearchScreen> {
                   itemCount: state.moviesList!.length,
                   itemBuilder: (context, index) {
                     final movie = state.moviesList![index];
-                    return FilmCard(
-                      image: movie.mediumCoverImage ?? AppAssets.movieImage,
-                      rating: movie.rating ?? 0.0,
+                    return InkWell(
+                      onTap: () {
+                        HistoryManager.saveMovie(movie);
+                        Navigator.pushNamed(context, AppRoutes.movieDetailsScreenRouteName,arguments: movie.id);
+                      },
+                      child: FilmCard(
+                        image: movie.mediumCoverImage ?? AppAssets.movieImage,
+                        rating: movie.rating ?? 0.0,
+                      ),
                     );
                   },
                 ),

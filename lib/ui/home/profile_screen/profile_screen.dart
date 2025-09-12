@@ -223,9 +223,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ), 
         itemBuilder: (context, index) {
           final movie=historyList[index];
-          return FilmCard(
-            image: movie.mediumCoverImage??'', 
-            rating: movie.rating
+          return InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, AppRoutes.movieDetailsScreenRouteName,arguments: movie.id);
+            },
+            child: FilmCard(
+              image: movie.mediumCoverImage??'', 
+              rating: movie.rating
+            ),
           );
         },
         itemCount: historyList.length,
