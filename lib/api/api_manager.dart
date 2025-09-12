@@ -4,13 +4,17 @@ import 'package:graduation_project_movies/api/api_constants.dart';
 //import 'api_constants.dart';
 //import 'end_points.dart';
 import 'package:graduation_project_movies/api/api_end_points.dart';
+import 'package:graduation_project_movies/models/get_all_favorite_movie.dart';
 import 'package:graduation_project_movies/models/login_response.dart';
 import 'package:graduation_project_movies/models/movie_details_response.dart';
 import 'package:graduation_project_movies/models/movie_suggestion_response.dart';
 import 'package:graduation_project_movies/models/user_response.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/add_to_favorite_response.dart';
+import '../models/is_favorite_response.dart';
 import '../models/movies_list_repsonse.dart';
+import '../models/remove_favorite_response.dart';
 
 class ApiManager {
   static Future<MovieSuggestionResponse?> getMovieSuggestion(
@@ -264,6 +268,124 @@ class ApiManager {
       return UserResponse.fromJson(json);
     } catch (e) {
       throw e;
+    }
+  }
+
+  static Future<AddToFavoriteResponse?> addMovieToFavorites({
+    required String token,
+    required int movieId,
+    required String name,
+    required double rating,
+    required String imageURL,
+    required int year,
+  }) async {
+    try {
+      Uri url =
+          Uri.https(ApiConstants.authBaseUrl, ApiEndPoints.addFavoriteApi);
+
+      var headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $token",
+      };
+
+      var body = jsonEncode({
+        "movieId": movieId,
+        "name": name,
+        "rating": rating,
+        "imageURL": imageURL,
+        "year": year,
+      });
+
+      var response = await http.post(url, headers: headers, body: body);
+
+      print("Status: ${response.statusCode}");
+      print("Body: ${response.body}");
+
+      if (response.statusCode == 200) {
+        return AddToFavoriteResponse.fromJson(jsonDecode(response.body));
+      } else {
+        print("Failed to add favorite: ${response.statusCode}");
+        return null;
+      }
+    } catch (e) {
+      print("Error in addMovieToFavorites: $e");
+      return null;
+    }
+  }
+
+  static Future<IsFavoriteResponse?> checkIfMovieIsFavorite({
+    required String token,
+    required int movieId,
+  }) async {
+    try {
+      Uri url = Uri.https(
+        ApiConstants.authBaseUrl,
+        "${ApiEndPoints.addFavoriteApi}/$movieId",
+      );
+
+      var headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $token",
+      };
+
+      var response = await http.get(url, headers: headers);
+
+      print("Status: ${response.statusCode}");
+      print("Body: ${response.body}");
+
+      if (response.statusCode == 200) {
+        return IsFavoriteResponse.fromJson(jsonDecode(response.body));
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print("Error: $e");
+      return null;
+    }
+  }
+
+  static Future<RemoveFavoriteResponse> removeMovieFromFavorites({
+    required String token,
+    required int movieId,
+  }) async {
+    final url = Uri.parse(
+        "https://${ApiConstants.authBaseUrl}/${ApiEndPoints.removeFavoriteApi}/$movieId");
+
+    final response = await http.delete(
+      url,
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $token",
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final jsonResponse = jsonDecode(response.body);
+      return RemoveFavoriteResponse.fromJson(jsonResponse);
+    } else {
+      throw Exception("Failed to remove favorite: ${response.body}");
+    }
+  }
+
+  static Future<GetAllFavoriteMovie?> getFavorites({
+    required String token,
+  }) async {
+    final url = Uri.parse(
+        "https://${ApiConstants.authBaseUrl}/${ApiEndPoints.getAllFavoriteApi}");
+
+    final response = await http.get(
+      url,
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $token",
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final jsonResponse = jsonDecode(response.body);
+      return GetAllFavoriteMovie.fromJson(jsonResponse);
+    } else {
+      throw Exception("Failed to fetch favorites: ${response.body}");
     }
   }
 }

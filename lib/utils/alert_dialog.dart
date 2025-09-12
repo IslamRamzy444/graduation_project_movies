@@ -16,10 +16,10 @@ class DialogUtils {
           children: [
             CircularProgressIndicator(color: AppColors.primaryColor),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(loadingText, style: AppStyles.semiBold20Primary),
-              ),
+              child: Text(
+                  overflow: TextOverflow.ellipsis,
+                  loadingText,
+                  style: AppStyles.semiBold20Primary),
             ),
           ],
         ),

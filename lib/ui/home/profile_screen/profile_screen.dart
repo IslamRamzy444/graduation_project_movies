@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:graduation_project_movies/l10n/app_localizations.dart';
+import 'package:graduation_project_movies/ui/home/profile_screen/cubit/profile_states.dart';
+import 'package:graduation_project_movies/ui/home/profile_screen/cubit/profile_view_model.dart';
+
 import 'package:graduation_project_movies/models/movies_list_repsonse.dart';
 import 'package:graduation_project_movies/ui/home/home_screen/film_card.dart';
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:graduation_project_movies/ui/home/profile_screen/cubit/profile_states.dart';
-import 'package:graduation_project_movies/ui/home/profile_screen/cubit/profile_view_model.dart';
-import 'package:graduation_project_movies/l10n/app_localizations.dart';
 import 'package:graduation_project_movies/ui/home/profile_screen/history_manager/history_manager.dart';
 //import 'package:graduation_project_movies/models/dummy_class.dart';
+
 import 'package:graduation_project_movies/ui/home/profile_screen/profile_screen_tab.dart';
+import 'package:graduation_project_movies/ui/home/profile_screen/watch_list.dart';
 import 'package:graduation_project_movies/ui/widgets/custom_Elevated_button.dart';
 import 'package:graduation_project_movies/utils/app_assets.dart';
 import 'package:graduation_project_movies/utils/app_colors.dart';
@@ -18,8 +22,9 @@ import '../../../utils/app_styles.dart';
 import '../../updateProfile/update_profile_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
-  String? token;
-  ProfileScreen({super.key, this.token});
+  final String? token;
+
+  const ProfileScreen({super.key, this.token});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -27,19 +32,19 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool watchHistory = true;
+  final ProfileViewModel viewModel = ProfileViewModel();
+
 
   //this class will be filled with the history and watch list then from the api
-  List<DummyClass> movieList = [];
   List<Movies> historyList = [];
-  ProfileViewModel viewModel = ProfileViewModel();
   void _loadHistory(){
     setState(() {
       historyList=HistoryManager.getMovies();
     });
   }
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     viewModel.getProfile(widget.token!);
     _loadHistory();
@@ -49,6 +54,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
+
     return SafeArea(
       child: Scaffold(
         body: BlocBuilder<ProfileViewModel, ProfileStates>(
@@ -56,11 +62,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
           builder: (context, state) {
             if (state is ProfileLoadingState) {
               return Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.primaryColor,
-                ),
-              );
-            } else if (state is ProfileFetchingState){
+                  child:
+                      CircularProgressIndicator(color: AppColors.primaryColor));
+            } else if (state is ProfileErrorState) {
+              return Center(
+                  child: Text("Error: ${state.error}",
+                      style: AppStyles.bold20White));
+            } else if (state is ProfileEmptyState) {
+              return Center(
+                  child: Text("No profile data found",
+                      style: AppStyles.bold20White));
+            } else if (state is ProfileFetchingState) {
+              final favoriteList = state.favorites;
+
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -70,13 +84,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: height * 0.01,
-                        ),
+                        SizedBox(height: height * 0.01),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            //this will change to network image to load the image that the user used it when creating the account
                             Image.asset(
                               "assets/images/avatar_${state.userProfile.avaterId}.png",
                               scale: 0.8,
@@ -84,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Column(
                               children: [
                                 Text(
-                                  "12",
+                                  '${favoriteList.length}',
                                   style: AppStyles.bold36White,
                                 ),
                                 Text(
@@ -104,35 +115,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(
-                          height: height * 0.01,
-                        ),
-                        //here we will add the name of the user
+                        SizedBox(height: height * 0.01),
                         Text(
-                          state.userProfile.name!,
+                          state.userProfile.name ?? "",
                           style: AppStyles.bold20White,
                         ),
-                        SizedBox(
-                          height: height * 0.01,
-                        ),
+                        SizedBox(height: height * 0.01),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomElevatedButton(
-                              buttonText: AppLocalizations.of(context)!.edit_profile,
+                              buttonText:
+                                  AppLocalizations.of(context)!.edit_profile,
                               onPressed: () async {
-                                // Navigate to update profile screen with ProfileViewModel instance
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => UpdateProfileScreen(
                                       userData: state.userProfile,
                                       token: widget.token!,
-                                      profileViewModel: viewModel, // Pass the viewModel instance
+                                      profileViewModel: viewModel,
                                     ),
                                   ),
                                 );
-                                // No need for manual refresh here since UpdateProfileScreen handles it
                               },
                               size: Size(width * 0.64, height * 0.07),
                             ),
@@ -140,28 +145,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               buttonText: AppLocalizations.of(context)!.exit,
                               buttonTextStyle: AppStyles.regular20White,
                               onPressed: () {
-                                Navigator.pushReplacementNamed(context, AppRoutes.loginScreenRouteName);
+                                Navigator.pushReplacementNamed(
+                                    context, AppRoutes.loginScreenRouteName);
                               },
                               size: Size(width * 0.26, height * 0.07),
                               buttonColor: AppColors.redColor,
                               borderColor: AppColors.redColor,
                               suffixIcon: ImageIcon(
-                                  AssetImage(AppAssets.exitIcon),
-                                  color: AppColors.whiteColor),
-                            )
+                                AssetImage(AppAssets.exitIcon),
+                                color: AppColors.whiteColor,
+                              ),
+                            ),
                           ],
                         ),
-                        SizedBox(
-                          height: height * 0.01,
-                        ),
+                        SizedBox(height: height * 0.01),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             ProfileScreenTab(
                               icon: AppAssets.watchListIcon,
                               onTap: () {
-                                watchHistory = !watchHistory;
-                                setState(() {});
+                                if (!watchHistory) {
+                                  setState(() {
+                                    watchHistory = true;
+                                  });
+                                }
                               },
                               text: AppLocalizations.of(context)!.watch_list,
                               isSelected: watchHistory,
@@ -169,8 +177,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ProfileScreenTab(
                               icon: AppAssets.historyIcon,
                               onTap: () {
-                                watchHistory = !watchHistory;
-                                setState(() {});
+                                if (watchHistory) {
+                                  setState(() {
+                                    watchHistory = false;
+                                  });
+                                }
                               },
                               text: AppLocalizations.of(context)!.history,
                               isSelected: !watchHistory,
@@ -182,13 +193,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   Expanded(
                     child: watchHistory?
-                    _buildWatchList():
+                     WatchList(
+                            favoriteList: favoriteList,
+                            token: widget.token!,
+                            refreshProfile: () =>
+                                viewModel.getProfile(widget.token!),
+                          ):
                     _buildHistoryList()
                   )
                 ],
               );
             }
-            return Container(color: AppColors.primaryColor,);
+            return Container(color: AppColors.primaryColor);
           },
         ),
       ),
@@ -216,10 +232,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
       );
     }
   }
-  Widget _buildWatchList(){
-    return Center(child: Image.asset(AppAssets.emptyIcon));
-  }
+  
 }
-
-class DummyClass {}
-

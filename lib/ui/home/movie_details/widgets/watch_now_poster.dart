@@ -10,9 +10,11 @@ class WatchNowPoster extends StatelessWidget {
   VoidCallback play;
   VoidCallback navBack;
   VoidCallback addFav;
+  bool isFavorite;
   WatchNowPoster({
     super.key,
-    required this.image,
+      this.isFavorite = false,
+      required this.image,
     required this.title,
     required this.year,
     required this.play,
@@ -64,7 +66,7 @@ class WatchNowPoster extends StatelessWidget {
                       addFav();
                     },
                     icon: Icon(
-                      Icons.bookmark,
+                      isFavorite ? Icons.bookmark : Icons.bookmark_border,
                       color: AppColors.whiteColor,
                     ))
               ],

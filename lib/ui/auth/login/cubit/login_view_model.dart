@@ -7,9 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../api/api_manager.dart';
 class LoginViewModel extends Cubit<LoginStates> {
-  var emailController =
-      TextEditingController(text: 'amr2111111111111@gmail.com');
-  var passwordController = TextEditingController(text: 'Amr2510@11');
+  var emailController = TextEditingController(text: 'faroukezz@gmail.com');
+  var passwordController = TextEditingController(text: 'retriX1!@');
 
   LoginViewModel() : super(LoginLoadingState());
   late LoginNavigator navigator;
