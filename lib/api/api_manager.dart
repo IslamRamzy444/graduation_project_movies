@@ -106,6 +106,29 @@ class ApiManager {
     }
   }
 
+  static Future<MoviesListResponse?> searchMovies(String query) async {
+    Uri url = Uri.https(
+      ApiConstants.baseUrl,
+      ApiConstants.moviesListEndPoint,
+      {
+        "query_term": query,
+        "limit": "20",
+        "minimum_rating": "2",
+        "sort_by": "relevance",
+        "order_by": "desc",
+        "quality": "1080p"
+      },
+    );
+    try {
+      var response = await http.get(url);
+      var responseBody = response.body;
+      var json = jsonDecode(responseBody);
+      return MoviesListResponse.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+
   Future<LoginResponse?> login(String email, String password) async {
     Uri url = Uri.https(ApiConstants.authBaseUrl, ApiEndPoints.loginApi);
 
