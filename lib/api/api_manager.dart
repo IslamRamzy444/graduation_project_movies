@@ -83,12 +83,13 @@ class ApiManager {
     }
   }
 
-  static Future<MoviesListResponse?> getMoviesByCategory(String genre) async {
+  static Future<MoviesListResponse?> getMoviesByCategory(String genre, {int page = 1}) async {
     Uri url = Uri.https(
       ApiConstants.baseUrl,
       ApiConstants.moviesListEndPoint,
       {
         "limit": "20",
+        "page": page.toString(),
         "minimum_rating": "7",
         "sort_by": "like_count",
         "order_by": "desc",
@@ -98,11 +99,15 @@ class ApiManager {
     );
     try {
       var response = await http.get(url);
-      var responseBody = response.body;
-      var json = jsonDecode(responseBody);
-      return MoviesListResponse.fromJson(json);
+      if (response.statusCode == 200) {
+        var responseBody = response.body;
+        var json = jsonDecode(responseBody);
+        return MoviesListResponse.fromJson(json);
+      } else {
+        throw Exception("Failed to load movies: ${response.statusCode}");
+      }
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
