@@ -30,13 +30,11 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   MovieDetailsResponse? movieDetails;
   MovieSuggestionResponse? movieSuggestionResponse;
   String? errorMessage;
-
   @override
   void initState() {
     super.initState();
     _init();
   }
-
   Future<void> _init() async {
     final prefs = await SharedPreferences.getInstance();
     token = prefs.getString("token");
@@ -267,51 +265,6 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                       ),
                       SizedBox(height: 16),
                     ],
-                    // if (movie.cast != null && movie.cast!.isNotEmpty) ...[
-                    //   Text(
-                    //     "Cast",
-                    //     style: AppStyles.bold20WhiteRoboto,
-                    //   ),
-                    //   SizedBox(height: 8),
-                    //   //this is picture for cast
-                    //   SizedBox(
-                    //     height: 120,
-                    //     child: ListView.builder(
-                    //       scrollDirection: Axis.horizontal,
-                    //       itemCount: movie.cast!.length,
-                    //       itemBuilder: (context, index) {
-                    //         final castMember = movie.cast![index];
-                    //         return Container(
-                    //           width: 80,
-                    //           margin: EdgeInsets.only(right: 12),
-                    //           child: Column(
-                    //             children: [
-                    //               CircleAvatar(
-                    //                 radius: 30,
-                    //                 backgroundImage:
-                    //                     castMember.urlSmallImage != null
-                    //                         ? NetworkImage(
-                    //                             castMember.urlSmallImage!)
-                    //                         : null,
-                    //                 child: castMember.urlSmallImage == null
-                    //                     ? Icon(Icons.person)
-                    //                     : null,
-                    //               ),
-                    //               SizedBox(height: 8),
-                    //               Text(
-                    //                 castMember.name ?? 'Unknown',
-                    //                 style: TextStyle(fontSize: 12),
-                    //                 textAlign: TextAlign.center,
-                    //                 maxLines: 2,
-                    //                 overflow: TextOverflow.ellipsis,
-                    //               ),
-                    //             ],
-                    //           ),
-                    //         );
-                    //       },
-                    //     ),
-                    //   ),
-                    // ],
                   ],
                 ),
               ),

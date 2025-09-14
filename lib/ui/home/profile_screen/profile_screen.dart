@@ -106,7 +106,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             Column(
                               children: [
-                                Text("12", style: AppStyles.bold36White),
+                                Text("${historyList.length}", style: AppStyles.bold36White),
                                 Text(
                                   AppLocalizations.of(context)!.history,
                                   style: AppStyles.bold24White,
@@ -224,8 +224,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         itemBuilder: (context, index) {
           final movie=historyList[index];
           return InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, AppRoutes.movieDetailsScreenRouteName,arguments: movie.id);
+            onTap: () async{
+              final updated=await Navigator.pushNamed(context, AppRoutes.movieDetailsScreenRouteName,arguments: movie.id);
+              if(updated==true){
+                viewModel.getProfile(widget.token!);
+              }
             },
             child: FilmCard(
               image: movie.mediumCoverImage??'', 
